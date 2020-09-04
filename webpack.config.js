@@ -34,17 +34,23 @@ module.exports = {
               hmr: process.env.NODE_ENV === "development"
             }
           },
-          "css-loader?url=false",
-          "sass-loader",
-          "postcss-loader"
+          "css-loader",
+          "postcss-loader",
+          "sass-loader"
         ]
+      },
+      {
+        test: /\.(png|svg|jpg|jpeg)$/,
+        loader: "file-loader",
+        options: {
+          name: '../res/imgs/[name].[ext]'
+        }
       }
     ]
   },
   plugins: [
     new MiniCssExtractPlugin({
-      filename: "../css/[name].css",
-      chunkFilename: "../css/[id].chunk.css"
+      filename: "../css/[name].css"
     })
   ]
 };

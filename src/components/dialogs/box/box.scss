@@ -1,0 +1,121 @@
+@import "../../../mixins.scss";
+
+.dialog {
+  .mask {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    opacity: 0.4;
+    background-color: black;
+
+    animation: mask-transition 300ms ease 1;
+
+    @keyframes mask-transition {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 0.4;
+      }
+    }
+  }
+
+  .box {
+    position: fixed;
+    width: 90%;
+    height: fit-content;
+    max-height: 50vh;
+    max-width: 400px;
+    border-radius: 16px;
+    box-shadow: 0 0 16px 0 rgba($color: #000000, $alpha: 0.5);
+    background-color: white;
+    margin: auto;
+    color: #282828;
+    right: 0;
+    left: 0;
+    font-size: 1.2rem;
+
+    header {
+      @include flex-row;
+      justify-content: flex-start;
+      height: 40px;
+      border-bottom: solid 1px rgba($color: #000000, $alpha: 0.5);
+      padding: 0 16px;
+      box-sizing: border-box;
+
+      .title {
+        font-size: 1.4rem;
+        font-weight: 500;
+      }
+    }
+
+    .body {
+      padding: 16px;
+      box-sizing: border-box;
+
+      .message {
+        overflow: auto;
+        max-height: calc(50vh - 40px - 32px);
+      }
+
+      .button-container {
+        @include flex-row;
+        height: 40px;
+        width: calc(100% + 32px);
+        margin: 0 0 -16px -16px;
+
+        button {
+          flex: 1;
+          @include flex-row;
+          background-color: inherit;
+          color: inherit;
+          border: none;
+          height: 100%;
+          padding: 0;
+          margin: 0;
+
+          &:active,
+          &:focus {
+            outline: none;
+            background-color: rgba($color: #000000, $alpha: 0.2);
+          }
+        }
+      }
+    }
+
+    &.top {
+      top: 38px;
+      bottom: auto;
+      animation: dialog-transition-top 300ms ease 1;
+
+      &.hide {
+        animation: dialog-transition-top-reverse 300ms ease 1;
+      }
+    }
+
+    &.bottom {
+      top: auto;
+      bottom: 38px;
+
+      animation: dialog-transition-bottom 300ms ease 1;
+
+      &.hide {
+        animation: dialog-transition-bottom-reverse 300ms ease 1;
+      }
+    }
+
+    &.center {
+      top: 0;
+      bottom: 0;
+
+      animation: dialog-transition-center 300ms ease 1;
+
+      &.hide {
+        animation: dialog-transition-center-reverse 300ms ease 1;
+      }
+    }
+  }
+}
