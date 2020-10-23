@@ -24,18 +24,9 @@
 
   header {
     @include flex-row;
-    background-color: var(--secondary-color);
     justify-content: flex-start;
-    height: 68px;
-    padding-top: 28px;
-    margin-top: -28px;
+    height: 60px;
     font-size: 1.6rem;
-    box-shadow: 0 0 4px 0 rgba($color: #000000, $alpha: 0.2);
-
-    .title:first-child {
-      margin-left: 1rem;
-      font-weight: 600;
-    }
 
     .icon {
       @include icon(60px, 60px, 1.8rem);

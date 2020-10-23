@@ -9,17 +9,13 @@
     width: 100vw;
     opacity: 0.4;
     background-color: black;
+    z-index: 998;
 
     animation: mask-transition 300ms ease 1;
 
-    @keyframes mask-transition {
-      from {
-        opacity: 0;
-      }
-
-      to {
-        opacity: 0.4;
-      }
+    &.hide {
+      opacity: 0;
+      animation: mask-transition-reverse 300ms ease 1;
     }
   }
 
@@ -27,7 +23,6 @@
     position: fixed;
     width: 90%;
     height: fit-content;
-    max-height: 50vh;
     max-width: 400px;
     border-radius: 16px;
     box-shadow: 0 0 16px 0 rgba($color: #000000, $alpha: 0.5);
@@ -37,6 +32,16 @@
     right: 0;
     left: 0;
     font-size: 1.2rem;
+    z-index: 999;
+
+    &.hide {
+      opacity: 0;
+
+      .mask {
+        opacity: 0;
+        animation: mask-transition-reverse 300ms ease 1;
+      }
+    }
 
     header {
       @include flex-row;
@@ -53,6 +58,8 @@
     }
 
     .body {
+      overflow: auto;
+      max-height: 50vh;
       padding: 16px;
       box-sizing: border-box;
 
