@@ -29,11 +29,12 @@ export default function Page(title, options) {
   if (!secondary)
     id = "main";
 
-  const $page = tag.parse(mustach.render($_page, {
+  const content = mustach.render($_page, {
     id,
     title,
     secondary
-  }));
+  });
+  const $page = tag.parse(content);
 
   function render() {
 
@@ -53,7 +54,7 @@ export default function Page(title, options) {
       }
     });
 
-    app.append($page);
+    app.append(this);
 
   }
 
@@ -61,6 +62,16 @@ export default function Page(title, options) {
     if (options.onhide) options.onhide();
     $page.classList.add('hide');
     setTimeout($page.remove.bind($page), config.pageTransitionTimeout);
+  }
+
+  function setContent(content) {
+    const $body = this.get(".page-body");
+    if (typeof content === "string") $body.innerHTML = content;
+    if (content instanceof HTMLElement) $body.append(content);
+  }
+
+  function getContent() {
+    return this.get("page-body").innerHTML;
   }
 
   Object.defineProperty($page, "id", {
@@ -71,6 +82,10 @@ export default function Page(title, options) {
   });
   Object.defineProperty($page, "hide", {
     value: hide
+  });
+  Object.defineProperty($page, "content", {
+    set: setContent,
+    get: getContent
   });
 
   return $page;

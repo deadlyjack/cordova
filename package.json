@@ -1,14 +1,16 @@
 {
     "name": "helloworld",
     "displayName": "HelloCordova",
-    "version": "1.0.1",
+    "version": "2.0.0",
     "description": "A sample Apache Cordova application that responds to the deviceready event.",
     "main": "index.js",
     "scripts": {
         "test": "jest",
         "config-build": "node ./utils/config.js",
         "start": "yarn config-build d && webpack && cordova run android",
-        "build": "yarn config-build p && webpack && cordova build android --release"
+        "build": "yarn config-build p && webpack && cordova build android --release",
+        "add-page": "node ./utils/pages add",
+        "del-page": "node ./utils/pages remove"
     },
     "keywords": [
         "ecosystem:cordova"
@@ -55,5 +57,8 @@
     "browserslist": [
         "> 1%",
         "last 2 versions"
-    ]
+    ],
+    "engines": {
+        "node": ">=12.0"
+    }
 }

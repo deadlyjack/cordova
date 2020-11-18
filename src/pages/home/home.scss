@@ -1,7 +1,7 @@
 @import '../../mixins.scss';
 
 #home {
-  @include flex-center;
+  @include flex-col;
 
   .col {
     @include flex-col;
@@ -26,5 +26,10 @@
       transform: scale(0.99) translateZ(0);
       background-color: #ccc;
     }
+  }
+
+  p {
+    user-select: text;
+    padding: 10px;
   }
 }

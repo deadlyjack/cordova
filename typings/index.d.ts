@@ -62,6 +62,11 @@ interface Page extends HTMLElement {
    * Removes the page from DOM
    */
   hide(): void;
+  /**
+   * Sets content (HTML string or HTML element) of the page
+   * gets conent (HTML string) of the page.
+   */
+  content: String;
 
 }
 

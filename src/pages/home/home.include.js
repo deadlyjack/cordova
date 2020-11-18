@@ -2,6 +2,7 @@ import './home.scss';
 import $_page from './home.hbs';
 import Page from "../../components/page/page";
 import Box from '../../components/dialogs/box/box';
+import Page1 from '../page1/page1';
 
 export default function HomeInclude() {
   const $page = Page();
@@ -32,11 +33,17 @@ export default function HomeInclude() {
         box = Box("Prompt box", "This prompt box is positioned at bottom", "bottom");
         break;
 
+      case 'page1':
+        Page1();
+        break;
+
       default:
         break;
     }
 
-    box.render();
-    box.$mask.onclick = box.hide;
+    if (box) {
+      box.render();
+      box.$mask.onclick = box.hide;
+    }
   }
 }
