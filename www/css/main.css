@@ -3,6 +3,206 @@
   --secondary-color: #1a1936;
   --text-color: #ffffff; }
 
+@-webkit-keyframes dialog-transition-top {
+  from {
+    -webkit-transform: translate3d(0, -100%, 0);
+            transform: translate3d(0, -100%, 0);
+    opacity: 0; }
+  to {
+    -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+    opacity: 1; } }
+
+@keyframes dialog-transition-top {
+  from {
+    -webkit-transform: translate3d(0, -100%, 0);
+            transform: translate3d(0, -100%, 0);
+    opacity: 0; }
+  to {
+    -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+    opacity: 1; } }
+
+@-webkit-keyframes dialog-transition-top-reverse {
+  from {
+    -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+    opacity: 1; }
+  to {
+    -webkit-transform: translate3d(0, -100%, 0);
+            transform: translate3d(0, -100%, 0);
+    opacity: 0; } }
+
+@keyframes dialog-transition-top-reverse {
+  from {
+    -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+    opacity: 1; }
+  to {
+    -webkit-transform: translate3d(0, -100%, 0);
+            transform: translate3d(0, -100%, 0);
+    opacity: 0; } }
+
+@-webkit-keyframes dialog-transition-bottom {
+  from {
+    -webkit-transform: translate3d(0, 100%, 0);
+            transform: translate3d(0, 100%, 0);
+    opacity: 0; }
+  to {
+    -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+    opacity: 1; } }
+
+@keyframes dialog-transition-bottom {
+  from {
+    -webkit-transform: translate3d(0, 100%, 0);
+            transform: translate3d(0, 100%, 0);
+    opacity: 0; }
+  to {
+    -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+    opacity: 1; } }
+
+@-webkit-keyframes dialog-transition-bottom-reverse {
+  from {
+    -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+    opacity: 1; }
+  to {
+    -webkit-transform: translate3d(0, 100%, 0);
+            transform: translate3d(0, 100%, 0);
+    opacity: 0; } }
+
+@keyframes dialog-transition-bottom-reverse {
+  from {
+    -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+    opacity: 1; }
+  to {
+    -webkit-transform: translate3d(0, 100%, 0);
+            transform: translate3d(0, 100%, 0);
+    opacity: 0; } }
+
+@-webkit-keyframes dialog-transition-center {
+  from {
+    -webkit-transform: scale3d(0.5, 0.5, 1);
+            transform: scale3d(0.5, 0.5, 1);
+    opacity: 0; }
+  to {
+    -webkit-transform: translate3d(1, 1, 1);
+            transform: translate3d(1, 1, 1);
+    opacity: 1; } }
+
+@keyframes dialog-transition-center {
+  from {
+    -webkit-transform: scale3d(0.5, 0.5, 1);
+            transform: scale3d(0.5, 0.5, 1);
+    opacity: 0; }
+  to {
+    -webkit-transform: translate3d(1, 1, 1);
+            transform: translate3d(1, 1, 1);
+    opacity: 1; } }
+
+@-webkit-keyframes dialog-transition-center-reverse {
+  from {
+    -webkit-transform: translate3d(1, 1, 1);
+            transform: translate3d(1, 1, 1);
+    opacity: 1; }
+  to {
+    -webkit-transform: scale3d(0.5, 0.5, 1);
+            transform: scale3d(0.5, 0.5, 1);
+    opacity: 0; } }
+
+@keyframes dialog-transition-center-reverse {
+  from {
+    -webkit-transform: translate3d(1, 1, 1);
+            transform: translate3d(1, 1, 1);
+    opacity: 1; }
+  to {
+    -webkit-transform: scale3d(0.5, 0.5, 1);
+            transform: scale3d(0.5, 0.5, 1);
+    opacity: 0; } }
+
+@-webkit-keyframes page-transition {
+  from {
+    -webkit-transform: translate3d(0, 100%, 0);
+            transform: translate3d(0, 100%, 0);
+    opacity: 0; }
+  to {
+    -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+    opacity: 1; } }
+
+@keyframes page-transition {
+  from {
+    -webkit-transform: translate3d(0, 100%, 0);
+            transform: translate3d(0, 100%, 0);
+    opacity: 0; }
+  to {
+    -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+    opacity: 1; } }
+
+@-webkit-keyframes page-transition-reverse {
+  from {
+    -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+    opacity: 1; }
+  to {
+    -webkit-transform: translate3d(0, 100%, 0);
+            transform: translate3d(0, 100%, 0);
+    opacity: 0; } }
+
+@keyframes page-transition-reverse {
+  from {
+    -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+    opacity: 1; }
+  to {
+    -webkit-transform: translate3d(0, 100%, 0);
+            transform: translate3d(0, 100%, 0);
+    opacity: 0; } }
+
+@-webkit-keyframes mask-transition {
+  from {
+    opacity: 0; }
+  to {
+    opacity: 0.4; } }
+
+@keyframes mask-transition {
+  from {
+    opacity: 0; }
+  to {
+    opacity: 0.4; } }
+
+@-webkit-keyframes mask-transition-reverse {
+  from {
+    opacity: 0.4; }
+  to {
+    opacity: 0; } }
+
+@keyframes mask-transition-reverse {
+  from {
+    opacity: 0.4; }
+  to {
+    opacity: 0; } }
+
+@-webkit-keyframes appear-from-bottom {
+  from {
+    -webkit-transform: translate3d(0, 120%, 0);
+            transform: translate3d(0, 120%, 0); }
+  to {
+    -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0); } }
+
+@keyframes appear-from-bottom {
+  from {
+    -webkit-transform: translate3d(0, 120%, 0);
+            transform: translate3d(0, 120%, 0); }
+  to {
+    -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0); } }
+
 html,
 body {
   viewport-fit: cover;
@@ -63,28 +263,46 @@ body {
   -ms-flex-wrap: wrap;
       flex-wrap: wrap; }
 
-.page {
-  position: fixed !important;
+.dialog .mask {
+  position: fixed;
   top: 0;
   left: 0;
-  height: 100%;
+  height: 100vh;
   width: 100vw;
-  overflow-x: hidden;
-  overflow-y: auto;
-  background-color: #282828;
-  background-color: var(--primary-color);
-  padding-top: 28px;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box; }
-  .page.secondary {
-    -webkit-animation: page-transition 100ms ease 1;
-            animation: page-transition 100ms ease 1; }
-    .page.secondary.hide {
-      /*transform: translate3d(0, 100%, 0);*/
+  opacity: 0.4;
+  background-color: black;
+  z-index: 998;
+  -webkit-animation: mask-transition 300ms ease 1;
+          animation: mask-transition 300ms ease 1; }
+  .dialog .mask.hide {
+    opacity: 0;
+    -webkit-animation: mask-transition-reverse 300ms ease 1;
+            animation: mask-transition-reverse 300ms ease 1; }
+
+.dialog .box {
+  position: fixed;
+  width: 90%;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  max-width: 400px;
+  border-radius: 16px;
+  -webkit-box-shadow: 0 0 16px 0 rgba(0, 0, 0, 0.5);
+          box-shadow: 0 0 16px 0 rgba(0, 0, 0, 0.5);
+  background-color: white;
+  margin: auto;
+  color: #282828;
+  right: 0;
+  left: 0;
+  font-size: 1.2rem;
+  z-index: 999; }
+  .dialog .box.hide {
+    opacity: 0; }
+    .dialog .box.hide .mask {
       opacity: 0;
-      -webkit-animation: page-transition-reverse 100ms ease 1;
-              animation: page-transition-reverse 100ms ease 1; }
-  .page header {
+      -webkit-animation: mask-transition-reverse 300ms ease 1;
+              animation: mask-transition-reverse 300ms ease 1; }
+  .dialog .box header {
     -webkit-box-orient: horizontal;
     -webkit-box-direction: normal;
         -ms-flex-direction: row;
@@ -98,24 +316,91 @@ body {
     -webkit-box-pack: center;
         -ms-flex-pack: center;
             justify-content: center;
-    background-color: var(--secondary-color);
     -webkit-box-pack: start;
         -ms-flex-pack: start;
             justify-content: flex-start;
-    height: 68px;
-    padding-top: 28px;
-    margin-top: -28px;
-    font-size: 1.6rem;
-    -webkit-box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.2);
-            box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.2); }
-    .page header .title:first-child {
-      margin-left: 1rem;
-      font-weight: 600; }
-    .page header .icon {
-      height: 60px;
-      width: 60px;
-      font-size: 1.8rem; }
-  .page .page-body {
-    width: 100%;
-    height: calc(100% - 60px); }
+    height: 40px;
+    border-bottom: solid 1px rgba(0, 0, 0, 0.5);
+    padding: 0 16px;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box; }
+    .dialog .box header .title {
+      font-size: 1.4rem;
+      font-weight: 500; }
+  .dialog .box .body {
+    overflow: auto;
+    max-height: 50vh;
+    padding: 16px;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box; }
+    .dialog .box .body .message {
+      overflow: auto;
+      max-height: calc(50vh - 40px - 32px); }
+    .dialog .box .body .button-container {
+      -webkit-box-orient: horizontal;
+      -webkit-box-direction: normal;
+          -ms-flex-direction: row;
+              flex-direction: row;
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-align: center;
+          -ms-flex-align: center;
+              align-items: center;
+      -webkit-box-pack: center;
+          -ms-flex-pack: center;
+              justify-content: center;
+      height: 40px;
+      width: calc(100% + 32px);
+      margin: 0 0 -16px -16px; }
+      .dialog .box .body .button-container button {
+        -webkit-box-flex: 1;
+            -ms-flex: 1;
+                flex: 1;
+        -webkit-box-orient: horizontal;
+        -webkit-box-direction: normal;
+            -ms-flex-direction: row;
+                flex-direction: row;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-align: center;
+            -ms-flex-align: center;
+                align-items: center;
+        -webkit-box-pack: center;
+            -ms-flex-pack: center;
+                justify-content: center;
+        background-color: inherit;
+        color: inherit;
+        border: none;
+        height: 100%;
+        padding: 0;
+        margin: 0; }
+        .dialog .box .body .button-container button:active, .dialog .box .body .button-container button:focus {
+          outline: none;
+          background-color: rgba(0, 0, 0, 0.2); }
+  .dialog .box.top {
+    top: 38px;
+    bottom: auto;
+    -webkit-animation: dialog-transition-top 300ms ease 1;
+            animation: dialog-transition-top 300ms ease 1; }
+    .dialog .box.top.hide {
+      -webkit-animation: dialog-transition-top-reverse 300ms ease 1;
+              animation: dialog-transition-top-reverse 300ms ease 1; }
+  .dialog .box.bottom {
+    top: auto;
+    bottom: 38px;
+    -webkit-animation: dialog-transition-bottom 300ms ease 1;
+            animation: dialog-transition-bottom 300ms ease 1; }
+    .dialog .box.bottom.hide {
+      -webkit-animation: dialog-transition-bottom-reverse 300ms ease 1;
+              animation: dialog-transition-bottom-reverse 300ms ease 1; }
+  .dialog .box.center {
+    top: 0;
+    bottom: 0;
+    -webkit-animation: dialog-transition-center 300ms ease 1;
+            animation: dialog-transition-center 300ms ease 1; }
+    .dialog .box.center.hide {
+      -webkit-animation: dialog-transition-center-reverse 300ms ease 1;
+              animation: dialog-transition-center-reverse 300ms ease 1; }
 

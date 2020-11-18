@@ -8,7 +8,8 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, "www/js/"),
     filename: "[name].min.js",
-    chunkFilename: "[name].chunk.js"
+    chunkFilename: "[name].chunk.js",
+    publicPath: "./js/"
   },
   module: {
     rules: [{
@@ -50,7 +51,8 @@ module.exports = {
   },
   plugins: [
     new MiniCssExtractPlugin({
-      filename: "../css/[name].css"
+      filename: "../css/[name].css",
+      chunkFilename: "../css/[id].css"
     })
   ]
 };

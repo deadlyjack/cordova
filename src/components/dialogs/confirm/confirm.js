@@ -1,9 +1,14 @@
+import $_confirm from './confirm.hbs';
+import mustache from 'mustache';
 import Box from "../box/box";
 
 export default function confirm(title, message) {
   return new Promise(resolve => {
 
-    const box = Box(title, message);
+    const body = mustache.render($_confirm, {
+      message
+    });
+    const box = Box(title, body);
     box.render();
 
     box.$body.onclick = clickhandler;
@@ -15,7 +20,7 @@ export default function confirm(title, message) {
     function clickhandler(e) {
       const $target = e.target;
       if (!($target instanceof HTMLElement)) return;
-      const action = $target.getAttribute("target");
+      const action = $target.getAttribute("action");
       if (!action) return;
 
       box.hide();

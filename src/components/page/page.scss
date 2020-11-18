@@ -15,7 +15,7 @@
     animation: page-transition 100ms ease 1;
 
     &.hide {
-      /*transform: translate3d(0, 100%, 0);*/
+      transform: translate3d(0, 100%, 0);
       opacity: 0;
       animation: page-transition-reverse 100ms ease 1;
     }

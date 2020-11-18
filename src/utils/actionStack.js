@@ -1,3 +1,6 @@
+import confirm from '../components/dialogs/confirm/confirm';
+import config from '../config';
+
 /**
  * @returns {ActionStack}
  */
@@ -15,16 +18,15 @@ export default function ActionStack() {
     if (window.freeze) return;
     const fun = stack.pop();
     if (fun) fun.action();
-    else {
-      //TODO: implement confirmation before closing
-      // const closeMessage = window.getCloseMessage();
-      // if (closeMessage) {
-      //   confirm(strings.warning.toUpperCase(), closeMessage)
-      //     .then(closeApp);
-      // } else {
-      //   confirm(strings.alert.toUpperCase(), strings['close app'])
-      //     .then(closeApp);
-      // }
+    else if (config.confirmOnExit) {
+      const closeMessage = typeof window.closeMessage === "function" ? window.getCloseMessage() : '';
+
+      if (closeMessage)
+        confirm('Alert', closeMessage).then(closeApp);
+      else
+        confirm('Alert', 'Exit app?').then(closeApp);
+
+    } else {
       closeApp();
     }
 
