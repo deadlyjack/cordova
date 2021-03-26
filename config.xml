@@ -28,6 +28,13 @@
 
         <hook type="after_prepare" src="hooks/post-process.js" />
     </platform>
+
+    <platform name="electron">
+        <preference name="ElectronSettingsFilePath" value="res/electron/settings.json" />
+        <!-- <icon src="res/logo.png" target="app" /> -->
+        <hook type="after_perpare" src="hooks/electron-hook.js" />
+    </platform>
+
     <platform name="ios">
         <allow-intent href="itms:*" />
         <allow-intent href="itms-apps:*" />

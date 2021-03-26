@@ -1,3 +1,1 @@
-{
-  "exclude": ["**/node_modules", "**/platforms", "**/plugings", "**/www"]
-}
+{}

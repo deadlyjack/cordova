@@ -59,10 +59,11 @@
   overflow-x: hidden;
   overflow-y: auto;
   background-color: #282828;
-  background-color: var(--primary-color);
-  padding-top: 28px;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box; }
+  background-color: var(--primary-color); }
+  .page[platform=android] {
+    padding-top: 28px;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box; }
   .page.secondary {
     -webkit-animation: page-transition 100ms ease 1;
             animation: page-transition 100ms ease 1; }

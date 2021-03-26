@@ -9,7 +9,10 @@
   overflow-x: hidden;
   overflow-y: auto;
   @include bgcolor;
-  @include statusbar;
+
+  &[platform=android] {
+    @include statusbar;
+  }
 
   &.secondary {
     animation: page-transition 100ms ease 1;

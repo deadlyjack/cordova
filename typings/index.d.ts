@@ -27,6 +27,34 @@ interface ActionStack {
    * lenght of the actionstack
    */
   length: Number;
+  /**
+   * Triggered when a new action is pushed to action stack.
+   * @param action 
+   */
+  onpush(action: Action): void;
+  /**
+   * Triggered when top of action stack is changed.
+   * @param action 
+   */
+  onpop(action: Action): void;
+  /**
+   * Triggered when any action is removed.
+   * @param action 
+   */
+  onremove(id: String): void;
+  /**
+   * Add a event listener to action stack
+   * @param event 
+   * @param listener 
+   */
+  on(event: "pop" | "push" | "remove", listener: (action: Action) => void): void;
+
+  /**
+   * Removes a event listener to action stack
+   * @param event 
+   * @param listener 
+   */
+  off(event: "pop" | "push" | "remove", listener: (action: Action) => void): void;
 }
 
 interface PageOption {
@@ -47,6 +75,10 @@ interface PageOption {
    * Called along with the page.hide is called.
    */
   onhide(): void;
+  /**
+   * Tag name for body. Default is "div"
+   */
+  bodyTag: Array<keyof HTMLElementTagNameMap>;
 }
 
 interface Page extends HTMLElement {
@@ -68,7 +100,49 @@ interface Page extends HTMLElement {
    */
   content: String;
 
+  /**
+   * Called when page is destroyed
+   */
+  onhide(): void;
+
 }
+
+interface String extends String {
+  /**
+   * Capitalize the string for e.g. converts "this is a string" to "This Is A String"
+   */
+  capitalize(): String;
+  /**
+   * Capitalize a character at given index for e.g.
+   * ```js
+   * "this is a string".capitalize(0) //"This is a string"
+   * ```
+   */
+  capitalize(index): String;
+  /**
+   * Returns hashcode of the string
+   */
+  hashCode(): String;
+  /**
+   * Subtract the string passed in argument from the given string,
+   * For e.g. ```"myname".subtract("my") //"name"```
+   */
+  subtract(str: String): String;
+  /**
+   * Removes all alphabets from string;
+   */
+  toNumber(): Number;
+  /**
+   * Removes all number from string;
+   */
+  toOnlyAlphabets(): Number;
+  /**
+   * Escapes regular expression special character
+   */
+  escapeRegexp(): String;
+}
+
 
 declare var app: HTMLDivElement;
 declare var actionStack: ActionStack;
+declare var root: String;
