@@ -4,6 +4,6 @@ export default {
    * @returns {string}
    */
   uuid() {
-    return (new Date().getTime() + parseInt(Math.random() * 100000000000)).toString(36);
-  }
+    return (new Date().getTime() + parseInt(Math.random() * 100000000000, 10)).toString(36);
+  },
 };

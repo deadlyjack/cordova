@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 const path = require('path');
 const fs = require('fs');
 
@@ -6,7 +7,6 @@ const wbcpath = path.resolve(__dirname, '../webpack.config.js');
 const babelrcpath = path.resolve(__dirname, '../.babelrc');
 
 try {
-
   let wbc = fs.readFileSync(wbcpath, 'utf8');
   let babelrc = fs.readFileSync(babelrcpath, 'utf8');
   babelrc = JSON.parse(babelrc);
@@ -23,10 +23,7 @@ try {
   babelrc = JSON.stringify(babelrc, undefined, 2);
   fs.writeFileSync(babelrcpath, babelrc, 'utf8');
   process.exit(0);
-
 } catch (error) {
-
   console.error(error);
   process.exit(1);
-
 }

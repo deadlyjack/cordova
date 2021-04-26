@@ -272,13 +272,9 @@ body {
   width: 100vw;
   opacity: 0.4;
   background-color: black;
-  z-index: 998;
-  -webkit-animation: mask-transition 300ms ease 1;
-          animation: mask-transition 300ms ease 1; }
+  z-index: 997; }
   .dialog .mask.hide {
-    opacity: 0;
-    -webkit-animation: mask-transition-reverse 300ms ease 1;
-            animation: mask-transition-reverse 300ms ease 1; }
+    opacity: 0; }
 
 .dialog .box {
   position: fixed;
@@ -296,7 +292,7 @@ body {
   right: 0;
   left: 0;
   font-size: 1.2rem;
-  z-index: 999; }
+  z-index: 998; }
   .dialog .box.hide {
     opacity: 0; }
     .dialog .box.hide .mask {
@@ -321,7 +317,6 @@ body {
         -ms-flex-pack: start;
             justify-content: flex-start;
     height: 40px;
-    border-bottom: solid 1px rgba(0, 0, 0, 0.5);
     padding: 0 16px;
     -webkit-box-sizing: border-box;
             box-sizing: border-box; }
@@ -331,7 +326,7 @@ body {
   .dialog .box .body {
     overflow: auto;
     max-height: 50vh;
-    padding: 16px;
+    padding: 0 16px 16px 16px;
     -webkit-box-sizing: border-box;
             box-sizing: border-box; }
     .dialog .box .body .message {
@@ -376,7 +371,10 @@ body {
         border: none;
         height: 100%;
         padding: 0;
-        margin: 0; }
+        margin: 0;
+        -webkit-box-shadow: none;
+                box-shadow: none;
+        color: black; }
         .dialog .box .body .button-container button:active, .dialog .box .body .button-container button:focus {
           outline: none;
           background-color: rgba(0, 0, 0, 0.2); }

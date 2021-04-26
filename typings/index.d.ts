@@ -143,6 +143,9 @@ interface String extends String {
 }
 
 
-declare var app: HTMLDivElement;
-declare var actionStack: ActionStack;
-declare var root: String;
+declare const app: HTMLDivElement;
+declare const actionStack: ActionStack;
+declare const ROOT: String;
+declare const IS_ANDROID: Boolean;
+declare const IS_ELECTRON: Boolean;
+declare const PLATFORM: "android" | "electron" | "browser";
