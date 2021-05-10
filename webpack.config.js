@@ -7,9 +7,9 @@ module.exports = (env, options) => {
   const IS_DEVELOPMENT = mode === 'development';
 
   if (!IS_DEVELOPMENT) {
-    clearOutputDir('./public/js/');
-    clearOutputDir('./public/css/');
-    clearOutputDir('./public/res/');
+    clearOutputDir('./www/js/');
+    clearOutputDir('./www/css/');
+    clearOutputDir('./www/res/');
   }
 
   const rules = [
