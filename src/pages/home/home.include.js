@@ -1,36 +1,36 @@
 import './home.scss';
-import $_page from './home.hbs';
-import Page from "../../components/page/page";
+import html from './home.hbs';
+import Page from '../../components/page/page';
 import Box from '../../components/dialogs/box/box';
 import Page1 from '../page1/page1';
 
 export default function HomeInclude() {
   const $page = Page();
-  $page.innerHTML = $_page;
+  $page.innerHTML = html;
 
-  $page.addEventListener("click", clickHandler);
+  $page.addEventListener('click', clickHandler);
 
   $page.render();
 
   /**
-   * 
-   * @param {MouseEvent} e 
+   *
+   * @param {MouseEvent} e
    */
   function clickHandler(e) {
     const $target = e.target;
-    const action = $target.getAttribute("action");
+    const action = $target.getAttribute('action');
     let box;
     switch (action) {
       case 'db-center':
-        box = Box("Prompt box", "This is centered prompt box", "center");
+        box = Box('Prompt box', 'This is centered prompt box', 'center');
         break;
 
       case 'db-top':
-        box = Box("Prompt box", "This prompt box is positioned at top", "top");
+        box = Box('Prompt box', 'This prompt box is positioned at top', 'top');
         break;
 
       case 'db-bottom':
-        box = Box("Prompt box", "This prompt box is positioned at bottom", "bottom");
+        box = Box('Prompt box', 'This prompt box is positioned at bottom', 'bottom');
         break;
 
       case 'page1':

@@ -1,1 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[2],{401:function(n,e,t){},403:function(n,e,t){"use strict";t.r(e),t.d(e,"default",(function(){return o}));t(401);var c=t(397);function o(){var n=Object(c.a)("Page1",{id:"kp4lb4u1",secondary:!0});n.content="",n.render()}}}]);
