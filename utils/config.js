@@ -1,29 +1,26 @@
-/* eslint-disable no-console */
 const path = require('path');
 const fs = require('fs');
 
 const arg = process.argv[2];
-const wbcpath = path.resolve(__dirname, '../webpack.config.js');
 const babelrcpath = path.resolve(__dirname, '../.babelrc');
 
+let babelrc;
+
 try {
-  let wbc = fs.readFileSync(wbcpath, 'utf8');
-  let babelrc = fs.readFileSync(babelrcpath, 'utf8');
-  babelrc = JSON.parse(babelrc);
+  babelrc = fs.readFileSync(babelrcpath, 'utf8');
+  if (babelrc) babelrc = JSON.parse(babelrc);
+} catch (error) {
+  babelrc = null;
+}
 
-  if (arg === 'd') {
-    wbc = wbc.replace(/mode: '.*'/, "mode: 'development'");
-    babelrc.compact = false;
-  } else if (arg === 'p') {
-    wbc = wbc.replace(/mode: '.*'/, "mode: 'production'");
-    babelrc.compact = true;
-  }
+if (arg === 'd') {
+  if (babelrc) babelrc.compact = false;
+} else if (arg === 'p') {
+  if (babelrc) babelrc.compact = true;
+}
 
-  fs.writeFileSync(wbcpath, wbc, 'utf8');
+if (babelrc) {
   babelrc = JSON.stringify(babelrc, undefined, 2);
   fs.writeFileSync(babelrcpath, babelrc, 'utf8');
-  process.exit(0);
-} catch (error) {
-  console.error(error);
-  process.exit(1);
 }
+process.exit(0);

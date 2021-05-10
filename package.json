@@ -7,9 +7,10 @@
     "scripts": {
         "test": "jest",
         "config-build": "node ./utils/config.js",
-        "start": "yarn config-build d && webpack && cordova run android",
-        "start-for": "yarn config-build d && webpack && cordova run",
-        "build": "yarn config-build p && webpack && cordova build android --release",
+        "start": "yarn config-build d && webpack --mode development && cordova run android",
+        "start-for": "yarn config-build d && webpack --mode development && cordova run",
+        "build": "yarn config-build p && webpack --mode production",
+        "build-android": "yarn config-build p && webpack --mode production && cordova build android --release",
         "add-page": "node ./utils/pages add",
         "del-page": "node ./utils/pages remove"
     },
