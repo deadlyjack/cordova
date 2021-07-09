@@ -40,7 +40,7 @@ module.exports = (env, options) => {
         },
         name: '[name].[ext]',
         publicPath(...args) {
-          return this.outputPath(...args).replace('../', '');
+          return this.outputPath(...args).replace('../', '..');
         },
       },
     },
@@ -93,7 +93,7 @@ module.exports = (env, options) => {
         const IGNORES = [
           'electron',
         ];
-        return function ignore(context, request, callback) {
+        return function ignore({ request }, callback) {
           if (IGNORES.indexOf(request) >= 0) {
             return callback(null, `require('${request}')`);
           }

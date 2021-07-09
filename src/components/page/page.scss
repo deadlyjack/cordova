@@ -1,4 +1,4 @@
-@import "../../mixins.scss";
+@import '../../mixins.scss';
 
 .page {
   position: fixed !important;
@@ -10,7 +10,7 @@
   overflow-y: auto;
   @include bgcolor;
 
-  &[platform=android] {
+  &[platform='android'] {
     @include statusbar;
   }
 
@@ -24,8 +24,7 @@
     }
   }
 
-
-  header {
+  header:not(:empty) {
     @include flex-row;
     justify-content: flex-start;
     height: 60px;

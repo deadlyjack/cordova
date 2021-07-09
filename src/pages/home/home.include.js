@@ -1,12 +1,12 @@
 import './home.scss';
-import html from './home.hbs';
+import page from './home.hbs';
 import Page from '../../components/page/page';
 import Box from '../../components/dialogs/box/box';
 import Page1 from '../page1/page1';
 
 export default function HomeInclude() {
   const $page = Page();
-  $page.innerHTML = html;
+  $page.innerHTML = page;
 
   $page.addEventListener('click', clickHandler);
 

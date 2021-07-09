@@ -26,8 +26,6 @@ export default function Page(title, options) {
     options = {};
   }
 
-  if (!secondary) id = 'main';
-
   const content = mustach.render(pageHTML, {
     id,
     title,
@@ -35,56 +33,54 @@ export default function Page(title, options) {
   });
   const $page = tag.parse(content);
 
-  function render() {
-    if (secondary) {
-      actionStack.push({
-        id,
-        action: this.hide,
-      });
-    }
+  if (typeof options.onhide === 'function') {
+    $page.onhide = options.onhide;
+  }
 
-    $page.addEventListener('click', (e) => {
-      const $target = e.target;
-      if ($target instanceof HTMLElement) {
-        const action = $target.getAttribute('action');
-        if (action === 'back') {
-          this.hide();
-          actionStack.remove(id);
+  Object.defineProperties($page, {
+    id: {
+      value: id,
+    },
+    render: {
+      value() {
+        if (secondary) {
+          actionStack.push({
+            id,
+            action: this.hide,
+          });
         }
-      }
-    });
 
-    app.append(this);
-  }
+        $page.addEventListener('click', (e) => {
+          const $target = e.target;
+          if ($target instanceof HTMLElement) {
+            const action = $target.getAttribute('action');
+            if (action === 'back') {
+              this.hide();
+              actionStack.remove(id);
+            }
+          }
+        });
 
-  function hide() {
-    if (options.onhide) options.onhide();
-    $page.classList.add('hide');
-    setTimeout($page.remove.bind($page), config.pageTransitionTimeout);
-  }
-
-  function setContent(HTMLtext) {
-    const $body = this.get('.page-body');
-    if (typeof HTMLtext === 'string') $body.innerHTML = HTMLtext;
-    if (HTMLtext instanceof HTMLElement) $body.append(HTMLtext);
-  }
-
-  function getContent() {
-    return this.get('page-body').innerHTML;
-  }
-
-  Object.defineProperty($page, 'id', {
-    value: id,
-  });
-  Object.defineProperty($page, 'render', {
-    value: render,
-  });
-  Object.defineProperty($page, 'hide', {
-    value: hide,
-  });
-  Object.defineProperty($page, 'content', {
-    set: setContent,
-    get: getContent,
+        app.append(this);
+      },
+    },
+    hide: {
+      value() {
+        if (typeof $page.onhide === 'function') $page.onhide();
+        $page.classList.add('hide');
+        setTimeout($page.remove.bind($page), config.pageTransitionTimeout);
+      },
+    },
+    content: {
+      get() {
+        return this.get('.page-body').innerHTML;
+      },
+      set(HTMLtext) {
+        const $body = this.get('.page-body');
+        if (typeof HTMLtext === 'string') $body.innerHTML = HTMLtext;
+        if (HTMLtext instanceof HTMLElement) $body.append(HTMLtext);
+      },
+    },
   });
 
   return $page;
