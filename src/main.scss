@@ -1,6 +1,6 @@
-@import "./mixins.scss";
-@import "./theme.scss";
-@import "./keyframes.scss";
+@import './mixins.scss';
+@import './theme.scss';
+@import './keyframes.scss';
 
 html,
 body {
@@ -16,8 +16,7 @@ body {
 }
 
 #app {
-
-  &[platform=android] {
+  &[platform='android'] {
     @include statusbar;
   }
 

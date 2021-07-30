@@ -1,16 +1,17 @@
 const path = require('path');
 const fs = require('fs');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 
 module.exports = (env, options) => {
   const { mode } = options;
   const IS_DEVELOPMENT = mode === 'development';
 
-  if (!IS_DEVELOPMENT) {
-    clearOutputDir('./www/js/');
-    clearOutputDir('./www/css/');
-    clearOutputDir('./www/res/');
-  }
+  // if (!IS_DEVELOPMENT) {
+  clearOutputDir('./www/js/');
+  clearOutputDir('./www/css/');
+  clearOutputDir('./www/res/');
+  // }
 
   const rules = [
     {
@@ -46,20 +47,21 @@ module.exports = (env, options) => {
     },
   ];
 
-  if (!IS_DEVELOPMENT) {
-    rules.push({
-      test: /\.m?js$/,
-      exclude: /(node_modules)/,
-      use: {
-        loader: 'babel-loader',
-        options: {
-          presets: ['@babel/preset-env'],
-        },
+  const babel = {
+    test: /\.m?js$/,
+    use: {
+      loader: 'babel-loader',
+      options: {
+        presets: ['@babel/preset-env'],
       },
-    });
+    },
+  };
+
+  if (!IS_DEVELOPMENT) {
+    rules.push(babel);
   }
 
-  return {
+  const mainConfig = {
     stats: 'minimal',
     watchOptions: {
       ignored: [
@@ -72,6 +74,7 @@ module.exports = (env, options) => {
     mode,
     entry: {
       main: './src/main.js',
+      // sw: './src/sw.js',
     },
     output: {
       path: path.resolve(__dirname, 'www/js/'),
@@ -101,7 +104,16 @@ module.exports = (env, options) => {
         };
       }()),
     ],
+    optimization: {
+      minimizer: [new TerserPlugin({
+        extractComments: false,
+      })],
+    },
   };
+
+  return [
+    mainConfig,
+  ];
 };
 
 function clearOutputDir(dir) {
