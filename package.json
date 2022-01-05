@@ -25,6 +25,7 @@
         "autoprefixer": "^10.4.1",
         "babel-loader": "^8.2.3",
         "cordova-android": "^10.1.1",
+        "cordova-electron": "^3.0.0",
         "cordova-plugin-statusbar": "^3.0.0",
         "css-loader": "^5.2.6",
         "electron": "^16.0.6",
@@ -57,7 +58,8 @@
         },
         "platforms": [
             "browser",
-            "android"
+            "android",
+            "electron"
         ]
     },
     "browserslist": [
