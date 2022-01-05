@@ -21,7 +21,11 @@ function main() {
   /* Setting global variables */
   Object.defineProperties(window, {
     actionStack: value(ActionStack()),
-    ROOT: value(window.location.href.replace(/(\/index\.html)$/, '').replace(/www\/.*/, 'www')),
+    ROOT: value(
+      window.location.href
+        .replace(/(\/index\.html)$/, '')
+        .replace(/www\/.*/, 'www'),
+    ),
     PLATFORM: value(PLATFORM),
     IS_ANDROID: value(PLATFORM === 'android'),
     IS_ELECTRON: value(PLATFORM === 'electron'),
@@ -102,7 +106,9 @@ function onBackButton() {
   if (!actionStack.length) {
     if (config.confirmOnExit) {
       setTimeout(() => {
-        const closeMessage = typeof window.closeMessage === 'function' ? window.getCloseMessage() : '';
+        const closeMessage = typeof window.closeMessage === 'function'
+          ? window.getCloseMessage()
+          : '';
 
         if (closeMessage) confirm('Alert', closeMessage).then(closeApp);
         else confirm('Alert', 'Exit app?').then(closeApp);

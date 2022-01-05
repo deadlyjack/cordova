@@ -1,6 +1,5 @@
 node_modules
 .env
 platforms
-www/js
-www/css
-www/res
+www/
+!www/index.html

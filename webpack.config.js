@@ -4,14 +4,11 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 
 module.exports = (env, options) => {
-  const { mode } = options;
+  const WWW = path.resolve(__dirname, 'www');
+  const SRC = path.resolve(__dirname, 'src');
+  const { mode = 'development' } = options;
   const IS_DEVELOPMENT = mode === 'development';
-
-  // if (!IS_DEVELOPMENT) {
-  clearOutputDir('./www/js/');
-  clearOutputDir('./www/css/');
-  clearOutputDir('./www/res/');
-  // }
+  clearOutputDir();
 
   const rules = [
     {
@@ -20,28 +17,26 @@ module.exports = (env, options) => {
     },
     {
       test: /\.(sa|sc|c)ss$/,
-      use: [{
-        loader: MiniCssExtractPlugin.loader,
-        options: {
-          publicPath: '../',
+      use: [
+        {
+          loader: MiniCssExtractPlugin.loader,
         },
-      },
-      'css-loader',
-      'postcss-loader',
-      'sass-loader',
+        'css-loader',
+        'postcss-loader',
+        'sass-loader',
       ],
     },
     {
       test: /\.(png|svg|jpg|jpeg|ico|ttf|webp|eot|woff)(\?.*)?$/,
       loader: 'file-loader',
       options: {
-        outputPath(url, res, ctx) {
-          res = path.relative(ctx, res).replace(/^src/, '');
-          return `../${res}`;
+        outputPath(url, res) {
+          res = path.relative(WWW, res.replace(SRC, WWW));
+          return res.replace(/\\/g, '/');
         },
         name: '[name].[ext]',
         publicPath(...args) {
-          return this.outputPath(...args).replace('../', '..');
+          return this.outputPath(...args);
         },
       },
     },
@@ -64,12 +59,7 @@ module.exports = (env, options) => {
   const mainConfig = {
     stats: 'minimal',
     watchOptions: {
-      ignored: [
-        '**/node_modules',
-        '**/server',
-        '**/public',
-        '**/tools',
-      ],
+      ignored: ['**/node_modules', '**/server', '**/public', '**/tools'],
     },
     mode,
     entry: {
@@ -77,49 +67,54 @@ module.exports = (env, options) => {
       // sw: './src/sw.js',
     },
     output: {
-      path: path.resolve(__dirname, 'www/js/'),
-      filename: '[name].min.js',
+      path: WWW,
+      filename: '[name].js',
       chunkFilename: '[name].chunk.js',
-      publicPath: './js/',
+      publicPath: './',
     },
     module: {
       rules,
     },
     plugins: [
       new MiniCssExtractPlugin({
-        filename: '../css/[name].css',
-        chunkFilename: '../css/[id].css',
+        filename: '[name].css',
+        chunkFilename: '[id].css',
       }),
     ],
-    externals: [
-      (function externals() {
-        const IGNORES = [
-          'electron',
-        ];
-        return function ignore({ request }, callback) {
-          if (IGNORES.indexOf(request) >= 0) {
-            return callback(null, `require('${request}')`);
-          }
-          return callback();
-        };
-      }()),
-    ],
+    externals: [externals()],
     optimization: {
-      minimizer: [new TerserPlugin({
-        extractComments: false,
-      })],
+      minimizer: [
+        new TerserPlugin({
+          extractComments: false,
+        }),
+      ],
     },
   };
 
-  return [
-    mainConfig,
-  ];
+  return [mainConfig];
 };
 
-function clearOutputDir(dir) {
-  fs.rmdir(path.resolve(__dirname, dir), {
-    recursive: true,
-  }, (err) => {
-    if (err) throw (err instanceof Error ? err : new Error(err));
+function externals() {
+  const IGNORES = ['electron'];
+  return function ignore({ request }, callback) {
+    if (IGNORES.indexOf(request) >= 0) {
+      return callback(null, `require('${request}')`);
+    }
+    return callback();
+  };
+}
+
+function clearOutputDir() {
+  const WWW = path.resolve(__dirname, 'www');
+  const files = fs.readdirSync(WWW);
+  files.forEach((file) => {
+    if (file !== 'index.html') {
+      const entry = path.join(WWW, file);
+      if (fs.statSync(entry).isDirectory()) {
+        fs.rmdirSync(entry, { recursive: true });
+      } else {
+        fs.unlinkSync(entry);
+      }
+    }
   });
 }

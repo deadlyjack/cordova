@@ -1,5 +1,12 @@
 @import '../../mixins.scss';
 
+#app[platform='android'] {
+  .page{
+    @include statusbar;
+  }
+}
+
+
 .page {
   position: fixed !important;
   top: 0;
@@ -9,10 +16,6 @@
   overflow-x: hidden;
   overflow-y: auto;
   @include bgcolor;
-
-  &[platform='android'] {
-    @include statusbar;
-  }
 
   &.secondary {
     animation: page-transition 100ms ease 1;
@@ -30,7 +33,7 @@
     height: 60px;
     font-size: 1.6rem;
 
-    .icon {
+    [class^='icon-'] {
       @include icon(60px, 60px, 1.8rem);
     }
   }

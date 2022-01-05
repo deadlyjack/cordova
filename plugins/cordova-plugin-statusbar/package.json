@@ -1,28 +1,28 @@
 {
-  "_from": "cordova-plugin-statusbar@2.4.3",
-  "_id": "cordova-plugin-statusbar@2.4.3",
+  "_from": "cordova-plugin-statusbar@3.0.0",
+  "_id": "cordova-plugin-statusbar@3.0.0",
   "_inBundle": false,
-  "_integrity": "sha512-ThmXzl6QIKWFXf4wWw7Q/zpB+VKkz3VM958+5A0sXD4jmR++u7KnGttLksXshVwWr6lvGwUebLYtIyXwS4Ovcg==",
+  "_integrity": "sha512-nzkeWeyLA6+1FryzO0aeB6NS8MZ45gnBYeq2VZqfdNbddZEgtpI4XPYdBVxvm9NhcVoJ3tdA1OBnQD9JryoV0Q==",
   "_location": "/cordova-plugin-statusbar",
   "_phantomChildren": {},
   "_requested": {
     "type": "version",
     "registry": true,
-    "raw": "cordova-plugin-statusbar@2.4.3",
+    "raw": "cordova-plugin-statusbar@3.0.0",
     "name": "cordova-plugin-statusbar",
     "escapedName": "cordova-plugin-statusbar",
-    "rawSpec": "2.4.3",
+    "rawSpec": "3.0.0",
     "saveSpec": null,
-    "fetchSpec": "2.4.3"
+    "fetchSpec": "3.0.0"
   },
   "_requiredBy": [
-    "#USER",
-    "/"
+    "#DEV:/",
+    "#USER"
   ],
-  "_resolved": "https://registry.npmjs.org/cordova-plugin-statusbar/-/cordova-plugin-statusbar-2.4.3.tgz",
-  "_shasum": "cc557aef66c27484e0f7f045004040d03321f82d",
-  "_spec": "cordova-plugin-statusbar@2.4.3",
-  "_where": "/mnt/sda1/cordova/shamshroo",
+  "_resolved": "https://registry.npmjs.org/cordova-plugin-statusbar/-/cordova-plugin-statusbar-3.0.0.tgz",
+  "_shasum": "371b54cef2594550118ef51c1d677c8adb3bc668",
+  "_spec": "cordova-plugin-statusbar@3.0.0",
+  "_where": "D:\\Github\\foxdebug\\cordova",
   "author": {
     "name": "Apache Software Foundation"
   },
@@ -35,22 +35,20 @@
     "platforms": [
       "android",
       "ios",
-      "wp7",
-      "wp8",
       "windows"
     ]
   },
   "deprecated": false,
   "description": "Cordova StatusBar Plugin",
   "devDependencies": {
-    "jshint": "^2.6.0"
+    "@cordova/eslint-config": "^4.0.0"
   },
   "engines": {
     "cordovaDependencies": {
       "0.1.0": {
         "cordova": ">=3.0.0"
       },
-      "3.0.0": {
+      "4.0.0": {
         "cordova": ">100"
       }
     }
@@ -62,8 +60,6 @@
     "ecosystem:cordova",
     "cordova-android",
     "cordova-ios",
-    "cordova-wp7",
-    "cordova-wp8",
     "cordova-windows"
   ],
   "license": "Apache-2.0",
@@ -73,9 +69,9 @@
     "url": "git+https://github.com/apache/cordova-plugin-statusbar.git"
   },
   "scripts": {
-    "jshint": "node node_modules/jshint/bin/jshint www && node node_modules/jshint/bin/jshint src && node node_modules/jshint/bin/jshint tests",
-    "test": "npm run jshint"
+    "lint": "eslint .",
+    "test": "npm run lint"
   },
   "types": "./types/index.d.ts",
-  "version": "2.4.3"
+  "version": "3.0.0"
 }

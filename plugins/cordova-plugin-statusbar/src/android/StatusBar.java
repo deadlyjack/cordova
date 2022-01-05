@@ -59,11 +59,18 @@ public class StatusBar extends CordovaPlugin {
                 Window window = cordova.getActivity().getWindow();
                 window.clearFlags(WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN);
 
+                // Read 'StatusBarOverlaysWebView' from config.xml, default is true.
+                setStatusBarTransparent(preferences.getBoolean("StatusBarOverlaysWebView", true));
+
                 // Read 'StatusBarBackgroundColor' from config.xml, default is #000000.
                 setStatusBarBackgroundColor(preferences.getString("StatusBarBackgroundColor", "#000000"));
 
                 // Read 'StatusBarStyle' from config.xml, default is 'lightcontent'.
-                setStatusBarStyle(preferences.getString("StatusBarStyle", "lightcontent"));
+                String styleSetting = preferences.getString("StatusBarStyle", "lightcontent");
+                if (styleSetting.equalsIgnoreCase("blacktranslucent") || styleSetting.equalsIgnoreCase("blackopaque")) {
+                    LOG.w(TAG, styleSetting +" is deprecated and will be removed in next major release, use lightcontent");
+                }
+                setStatusBarStyle(styleSetting);
             }
         });
     }

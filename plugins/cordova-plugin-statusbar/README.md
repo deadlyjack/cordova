@@ -21,11 +21,9 @@ description: Control the device status bar.
 #         under the License.
 -->
 
-|AppVeyor|Travis CI|
-|:-:|:-:|
-|[![Build status](https://ci.appveyor.com/api/projects/status/github/apache/cordova-plugin-statusbar?branch=master)](https://ci.appveyor.com/project/ApacheSoftwareFoundation/cordova-plugin-statusbar)|[![Build Status](https://travis-ci.org/apache/cordova-plugin-statusbar.svg?branch=master)](https://travis-ci.org/apache/cordova-plugin-statusbar)|
-
 # cordova-plugin-statusbar
+
+[![Android Testsuite](https://github.com/apache/cordova-plugin-statusbar/actions/workflows/android.yml/badge.svg)](https://github.com/apache/cordova-plugin-statusbar/actions/workflows/android.yml) [![Chrome Testsuite](https://github.com/apache/cordova-plugin-statusbar/actions/workflows/chrome.yml/badge.svg)](https://github.com/apache/cordova-plugin-statusbar/actions/workflows/chrome.yml) [![iOS Testsuite](https://github.com/apache/cordova-plugin-statusbar/actions/workflows/ios.yml/badge.svg)](https://github.com/apache/cordova-plugin-statusbar/actions/workflows/ios.yml) [![Lint Test](https://github.com/apache/cordova-plugin-statusbar/actions/workflows/lint.yml/badge.svg)](https://github.com/apache/cordova-plugin-statusbar/actions/workflows/lint.yml)
 
 > The `StatusBar` object provides some functions to customize the iOS and Android StatusBar.
 
@@ -34,9 +32,7 @@ description: Control the device status bar.
 This installation method requires cordova 5.0+
 
     cordova plugin add cordova-plugin-statusbar
-Older versions of cordova can still install via the __deprecated__ id
 
-    cordova plugin add org.apache.cordova.statusbar
 It is also possible to install via repo url directly ( unstable )
 
     cordova plugin add https://github.com/apache/cordova-plugin-statusbar.git
@@ -55,11 +51,11 @@ Preferences
     
     Only supported on Android 5 or later. Earlier versions will ignore this preference.
 
-- __StatusBarBackgroundColor__ (color hex string, no default value). Set the background color of the statusbar by a hex string (#RRGGBB) at startup. If this value is not set, the background color will be transparent.
+- __StatusBarBackgroundColor__ (color hex string, no default value). Set the background color of the statusbar by a hex string (#RRGGBB) at startup. If this value is not set, the background color will be transparent. If `StatusBarOverlaysWebView` is set to true, then a 8 digit hex (#AARRGGBB) string can optionally be used to define the transparency.
 
         <preference name="StatusBarBackgroundColor" value="#000000" />
 
-- __StatusBarStyle__ (status bar style, defaults to lightcontent). Set the status bar style. Available options default, lightcontent, blacktranslucent, blackopaque.
+- __StatusBarStyle__ (status bar style, defaults to lightcontent). Set the status bar style (e.g. text color). Available options: `default`, `lightcontent`. `blacktranslucent` and `blackopaque` are also available, but __deprecated__, will be removed in next major release, use `lightcontent` instead.
 
         <preference name="StatusBarStyle" value="lightcontent" />
 
@@ -84,6 +80,15 @@ if (cordova.platformId == 'android') {
     StatusBar.backgroundColorByHexString('#33000000');
 }
 ```
+
+### iOS Quirks
+Starting with iOS 11 you must include `viewport-fit=cover` in your viewport meta tag if you want the status bar to overlay the webview:
+
+```html
+<meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
+```
+
+
 
 Hiding at startup
 -----------
@@ -146,7 +151,7 @@ Set to true to make the statusbar overlay on top of your app. Ensure that you ad
 Supported Platforms
 -------------------
 
-- iOS 7+
+- iOS
 - Android 5+
 
 Quick Example
@@ -168,9 +173,7 @@ Supported Platforms
 
 - iOS
 - Android 6+
-- Windows Phone 7
-- Windows Phone 8
-- Windows Phone 8.1
+- Windows
 
 StatusBar.styleLightContent
 =================
@@ -185,12 +188,12 @@ Supported Platforms
 
 - iOS
 - Android 6+
-- Windows Phone 7
-- Windows Phone 8
-- Windows Phone 8.1
+- Windows
 
 StatusBar.styleBlackTranslucent
 =================
+
+Note: `styleBlackTranslucent` is __deprecated__ and will be removed in next major release, use `styleLightContent` instead.
 
 Use the blackTranslucent statusbar (light text, for dark backgrounds).
 
@@ -202,12 +205,12 @@ Supported Platforms
 
 - iOS
 - Android 6+
-- Windows Phone 7
-- Windows Phone 8
-- Windows Phone 8.1
+- Windows
 
 StatusBar.styleBlackOpaque
 =================
+
+Note: `styleBlackOpaque` is __deprecated__ and will be removed in next major release, use `styleLightContent` instead.
 
 Use the blackOpaque statusbar (light text, for dark backgrounds).
 
@@ -219,9 +222,7 @@ Supported Platforms
 
 - iOS
 - Android 6+
-- Windows Phone 7
-- Windows Phone 8
-- Windows Phone 8.1
+- Windows
 
 
 StatusBar.backgroundColorByName
@@ -241,9 +242,7 @@ Supported Platforms
 
 - iOS
 - Android 5+
-- Windows Phone 7
-- Windows Phone 8
-- Windows Phone 8.1
+- Windows
 
 StatusBar.backgroundColorByHexString
 =================
@@ -266,9 +265,7 @@ Supported Platforms
 
 - iOS
 - Android 5+
-- Windows Phone 7
-- Windows Phone 8
-- Windows Phone 8.1
+- Windows
 
 StatusBar.hide
 =================
@@ -283,9 +280,7 @@ Supported Platforms
 
 - iOS
 - Android
-- Windows Phone 7
-- Windows Phone 8
-- Windows Phone 8.1
+- Windows
 
 StatusBar.show
 =================
@@ -300,10 +295,7 @@ Supported Platforms
 
 - iOS
 - Android
-- Windows Phone 7
-- Windows Phone 8
-- Windows Phone 8.1
-
+- Windows
 
 StatusBar.isVisible
 =================
@@ -320,10 +312,7 @@ Supported Platforms
 
 - iOS
 - Android
-- Windows Phone 7
-- Windows Phone 8
-- Windows Phone 8.1
-
+- Windows
 
 statusTap
 =========

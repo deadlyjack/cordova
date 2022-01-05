@@ -23,8 +23,10 @@
     }
 
     &:active {
-      transform: scale(0.99) translateZ(0);
-      background-color: #ccc;
+      background-color: inherit;
+      span{
+        mix-blend-mode: difference;
+      }
     }
   }
 

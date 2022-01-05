@@ -21,8 +21,15 @@ webpackmode="production"
 cordovamode="--release"
 fi
 
+RED=''
+NC=''
+
+if [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]
+then
 RED='\033[1;34m'
 NC='\033[0m'
+fi
+
 script1="node ./utils/config.js $mode"
 script2="webpack --progress --mode $webpackmode "
 script3="cordova run $platform $cordovamode"

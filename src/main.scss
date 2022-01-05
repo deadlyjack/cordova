@@ -27,7 +27,7 @@ body {
   left: 0;
 }
 
-.icon {
+[class^='icon-'] {	
   display: inline-flex;
   align-items: center;
   justify-content: center;
