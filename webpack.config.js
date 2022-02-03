@@ -5,7 +5,6 @@ const TerserPlugin = require('terser-webpack-plugin');
 
 module.exports = (env, options) => {
   const WWW = path.resolve(__dirname, 'www');
-  const SRC = path.resolve(__dirname, 'src');
   const { mode = 'development' } = options;
   const IS_DEVELOPMENT = mode === 'development';
   clearOutputDir();
@@ -28,17 +27,7 @@ module.exports = (env, options) => {
     },
     {
       test: /\.(png|svg|jpg|jpeg|ico|ttf|webp|eot|woff)(\?.*)?$/,
-      loader: 'file-loader',
-      options: {
-        outputPath(url, res) {
-          res = path.relative(WWW, res.replace(SRC, WWW));
-          return res.replace(/\\/g, '/');
-        },
-        name: '[name].[ext]',
-        publicPath(...args) {
-          return this.outputPath(...args);
-        },
-      },
+      type: 'asset/resource',
     },
   ];
 
