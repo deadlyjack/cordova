@@ -27,6 +27,12 @@ body {
   left: 0;
 }
 
+[action], [data-action]{
+  *:not([action]){
+    pointer-events: none;
+  }
+}
+
 [class^='icon-'] {	
   display: inline-flex;
   align-items: center;

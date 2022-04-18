@@ -9,7 +9,6 @@ export default function HomeInclude() {
   $page.innerHTML = page;
 
   $page.addEventListener('click', clickHandler);
-
   $page.render();
 
   /**

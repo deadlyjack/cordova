@@ -6,5 +6,13 @@
     },
     "is_top_level": true,
     "variables": {}
+  },
+  "native": {
+    "source": {
+      "type": "local",
+      "path": "D:\\Github\\foxdebug\\cordova\\node_modules\\native"
+    },
+    "is_top_level": true,
+    "variables": {}
   }
 }

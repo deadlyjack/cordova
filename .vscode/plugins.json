@@ -1,1 +1,1 @@
-{"plugins":["cordova-plugin-statusbar"]}
+{"plugins":["cordova-plugin-statusbar","native"]}

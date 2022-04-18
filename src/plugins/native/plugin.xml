@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+  xmlns:android="http://schemas.android.com/apk/res/android" id="native" version="0.0.1">
+  <name>native</name>
+  <description>App native code.</description>
+  <license>Apache 2.0</license>
+  <keywords></keywords>
+
+  <js-module src="www/plugin.js" name="native">
+    <clobbers target="window.native" />
+  </js-module>
+  <platform name="android">
+
+    <config-file target="res/xml/config.xml" parent="/*">
+      <feature name="Native">
+        <param name="android-package" value="io.cordova.hellocordova.Native"/>
+      </feature>
+    </config-file>
+
+    <config-file target="AndroidManifest.xml" parent="./application">
+      <provider android:name="androidx.core.content.FileProvider" android:authorities="io.cordova.hellocordova.provider" android:exported="false" android:grantUriPermissions="true">
+        <meta-data android:name="android.support.FILE_PROVIDER_PATHS" android:resource="@xml/file_provider"/>
+      </provider>
+    </config-file>
+
+    <hook type="after_prepare" src="utils/fixProvider.js" />
+
+    <resource-file src="file_provider.xml" target="res/xml/file_provider.xml" />
+    <source-file src="src/android/io/cordova/hellocordova/Native.java" target-dir="src/io/cordova/hellocordova"/>
+
+    <framework src="commons-io:commons-io:2.11.0" />
+    <framework src="androidx.core:core:1.6.0" />
+    <framework src="androidx.core:core-google-shortcuts:1.0.0" />
+  </platform>
+</plugin>
