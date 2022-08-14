@@ -29,32 +29,38 @@ interface ActionStack {
   length: Number;
   /**
    * Triggered when a new action is pushed to action stack.
-   * @param action 
+   * @param action
    */
   onpush(action: Action): void;
   /**
    * Triggered when top of action stack is changed.
-   * @param action 
+   * @param action
    */
   onpop(action: Action): void;
   /**
    * Triggered when any action is removed.
-   * @param action 
+   * @param action
    */
   onremove(id: String): void;
   /**
    * Add a event listener to action stack
-   * @param event 
-   * @param listener 
+   * @param event
+   * @param listener
    */
-  on(event: "pop" | "push" | "remove", listener: (action: Action) => void): void;
+  on(
+    event: 'pop' | 'push' | 'remove',
+    listener: (action: Action) => void,
+  ): void;
 
   /**
    * Removes a event listener to action stack
-   * @param event 
-   * @param listener 
+   * @param event
+   * @param listener
    */
-  off(event: "pop" | "push" | "remove", listener: (action: Action) => void): void;
+  off(
+    event: 'pop' | 'push' | 'remove',
+    listener: (action: Action) => void,
+  ): void;
 }
 
 interface PageOption {
@@ -71,81 +77,11 @@ interface PageOption {
    * method and a back icon.
    */
   secondary: boolean;
-  /**
-   * Called along with the page.hide is called.
-   */
-  onhide(): void;
-  /**
-   * Tag name for body. Default is "div"
-   */
-  bodyTag: Array<keyof HTMLElementTagNameMap>;
 }
-
-interface Page extends HTMLElement {
-  /**
-   * Id of the page.
-   */
-  id: String;
-  /**
-   * Appends the page to DOM
-   */
-  render(): void;
-  /**
-   * Removes the page from DOM
-   */
-  hide(): void;
-  /**
-   * Sets content (HTML string or HTML element) of the page
-   * gets conent (HTML string) of the page.
-   */
-  content: String;
-
-  /**
-   * Called when page is destroyed
-   */
-  onhide(): void;
-
-}
-
-interface String extends String {
-  /**
-   * Capitalize the string for e.g. converts "this is a string" to "This Is A String"
-   */
-  capitalize(): String;
-  /**
-   * Capitalize a character at given index for e.g.
-   * ```js
-   * "this is a string".capitalize(0) //"This is a string"
-   * ```
-   */
-  capitalize(index): String;
-  /**
-   * Returns hashcode of the string
-   */
-  hashCode(): String;
-  /**
-   * Subtract the string passed in argument from the given string,
-   * For e.g. ```"myname".subtract("my") //"name"```
-   */
-  subtract(str: String): String;
-  /**
-   * Removes all alphabets from string;
-   */
-  toNumber(): Number;
-  /**
-   * Removes all number from string;
-   */
-  toOnlyAlphabets(): Number;
-  /**
-   * Escapes regular expression special character
-   */
-  escapeRegexp(): String;
-}
-
 
 declare const app: HTMLDivElement;
 declare const actionStack: ActionStack;
 declare const ROOT: String;
 declare const IS_ANDROID: Boolean;
 declare const IS_ELECTRON: Boolean;
-declare const PLATFORM: "android" | "electron" | "browser";
+declare const PLATFORM: 'android' | 'electron' | 'browser';

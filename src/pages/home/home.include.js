@@ -1,48 +1,23 @@
-import './home.scss';
-import page from './home.hbs';
+import view from './home.view';
 import Page from '../../components/page/page';
-import Box from '../../components/dialogs/box/box';
-import Page1 from '../page1/page1';
 
 export default function HomeInclude() {
-  const $page = Page();
-  $page.innerHTML = page;
+  let count = 0;
+  const $page = Page({
+    id: 'home',
+  });
+  $page.content = view();
+  app.append($page);
 
-  $page.addEventListener('click', clickHandler);
-  $page.render();
-
-  /**
-   *
-   * @param {MouseEvent} e
-   */
-  function clickHandler(e) {
-    const $target = e.target;
-    const action = $target.getAttribute('action');
-    let box;
-    switch (action) {
-      case 'db-center':
-        box = Box('Prompt box', 'This is centered prompt box', 'center');
-        break;
-
-      case 'db-top':
-        box = Box('Prompt box', 'This prompt box is positioned at top', 'top');
-        break;
-
-      case 'db-bottom':
-        box = Box('Prompt box', 'This prompt box is positioned at bottom', 'bottom');
-        break;
-
-      case 'page1':
-        Page1();
-        break;
-
-      default:
-        break;
+  app.addEventListener('click', (e) => {
+    const { action } = e.target.dataset;
+    if (action === 'push-page') {
+      const $newPage = Page(`Page ${++count}`);
+      $newPage.content = view();
+      app.append($newPage);
+      $newPage.on('hide', () => {
+        --count;
+      });
     }
-
-    if (box) {
-      box.render();
-      box.$mask.onclick = box.hide;
-    }
-  }
+  });
 }

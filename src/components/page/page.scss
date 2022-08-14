@@ -1,13 +1,13 @@
 @import '../../mixins.scss';
 
 #app[platform='android'] {
-  .page{
+  cordova-page{
     @include statusbar;
   }
 }
 
 
-.page {
+cordova-page {
   position: fixed !important;
   top: 0;
   left: 0;
@@ -17,17 +17,8 @@
   overflow-y: auto;
   @include bgcolor;
 
-  &.secondary {
-    animation: page-transition 100ms ease 1;
-
-    &.hide {
-      transform: translate3d(0, 100%, 0);
-      opacity: 0;
-      animation: page-transition-reverse 100ms ease 1;
-    }
-  }
-
   header:not(:empty) {
+    width: 100%;
     @include flex-row;
     justify-content: flex-start;
     height: 60px;
@@ -38,8 +29,27 @@
     }
   }
 
-  .page-body {
+  .body {
     width: 100%;
-    height: calc(100% - 60px);
+    height: 100%;
+  }
+
+  &[secondary=true] {
+    opacity: 1;
+    animation: page-transition 100ms ease 1;
+
+    &.hide {
+      transform: translate3d(0, 100%, 0);
+      opacity: 0;
+      animation: page-transition-reverse 100ms ease 1;
+    }
+
+    &.no-transition {
+      animation: none;
+    }
+
+    .body{
+      height: calc(100% - 60px);
+    }
   }
 }

@@ -37,7 +37,7 @@ const content = {
   hbs: '',
   scss: `#${id}{\n  position: relative;\n}`,
   js: `export default function ${classname}(...args) {\n  import(/* webpackChunkName: "${name}" */ './${name}.include')\n    .then((module) => {\n      const ${name} = module.default;\n      ${name}(...args);\n    });\n}\n`,
-  'include.js': `import './${name}.scss';\nimport page from './${name}.hbs';\nimport Page from '../../components/page/page';\n\nexport default function ${classname}Include() {\n  const $page = Page('${classname}', {\n    id: '${id}',\n    secondary: true,\n  });\n  $page.content = page;\n  $page.render();\n}\n`,
+  'include.js': `import './${name}.scss';\nimport Page from 'components/page/page';\nimport page from './${name}.hbs';\n\nexport default function ${classname}Include() {\n  const $page = Page('${classname}', {\n    id: '${id}',\n    secondary: true,\n  });\n  $page.content = page;\n  $page.render();\n}\n`,
 };
 
 if (action === 'remove') {

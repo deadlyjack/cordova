@@ -8,14 +8,15 @@
         "airbnb-base"
     ],
     "parserOptions": {
-        "ecmaVersion": 12,
+        "ecmaVersion": 13,
         "sourceType": "module"
     },
     "rules": {
         "no-use-before-define": "off",
         "no-param-reassign": "off",
         "no-multi-assign": "off",
-        "no-plusplus": "off"
+        "no-plusplus": "off",
+        "lines-between-class-members": "off"
     },
     "globals": {
         "cordova": "readonly",
@@ -24,6 +25,16 @@
         "PLATFORM": "readonly",
         "ROOT": "readonly",
         "IS_ANDROID": "readonly",
-        "IS_ELECTRON": "readonly"
+        "IS_ELECTRON": "readonly",
+        "native": "readonly"
+    },
+    "settings": {
+        "import/resolver": {
+            "node": {
+                "paths": [
+                    "src"
+                ]
+            }
+        }
     }
 }

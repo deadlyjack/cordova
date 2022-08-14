@@ -6,7 +6,7 @@ const TerserPlugin = require('terser-webpack-plugin');
 module.exports = (env, options) => {
   const WWW = path.resolve(__dirname, 'www');
   const { mode = 'development' } = options;
-  const IS_DEVELOPMENT = mode === 'development';
+  // const IS_DEVELOPMENT = mode === 'development';
   clearOutputDir();
 
   const rules = [
@@ -15,7 +15,15 @@ module.exports = (env, options) => {
       use: ['raw-loader'],
     },
     {
-      test: /\.(sa|sc|c)ss$/,
+      test: /\.module.(sa|sc|c)ss$/,
+      use: [
+        'raw-loader',
+        'postcss-loader',
+        'sass-loader',
+      ],
+    },
+    {
+      test: /(?<!\.module)\.(sa|sc|c)ss$/,
       use: [
         {
           loader: MiniCssExtractPlugin.loader,
@@ -41,11 +49,20 @@ module.exports = (env, options) => {
     },
   };
 
-  if (!IS_DEVELOPMENT) {
-    rules.push(babel);
-  }
+  // if (!IS_DEVELOPMENT) {
+  rules.push(babel);
+  // }
 
   const mainConfig = {
+    resolve: {
+      alias: {
+        res: path.resolve(__dirname, 'src/res'),
+        pages: path.resolve(__dirname, 'src/pages'),
+        plugins: path.resolve(__dirname, 'src/plugins'),
+        components: path.resolve(__dirname, 'src/components'),
+        utils: path.resolve(__dirname, 'src/utils'),
+      },
+    },
     stats: 'minimal',
     watchOptions: {
       ignored: ['**/node_modules', '**/server', '**/public', '**/tools'],

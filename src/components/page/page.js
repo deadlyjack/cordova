@@ -1,87 +1,70 @@
 import './page.scss';
-
 import tag from 'html-tag-js';
-import mustach from 'mustache';
-import pageHTML from './page.hbs';
-
-import helpers from '../../utils/helpers';
-import config from '../../config';
+import helpers from 'utils/helpers';
 
 /**
  *
  * @param {String} title
  * @param {boolean|PageOption} [options] options or is secondary?
- * @returns {Page}
+ * @returns {import('../cordovaPage/cordovaPage').default}
  */
-export default function Page(title, options) {
-  let id = helpers.uuid();
-  let secondary = false;
-
-  if (typeof options === 'boolean') {
-    secondary = options;
-  } else if (typeof options === 'object') {
-    id = options.id;
-    secondary = options.secondary;
-  } else {
-    options = {};
+export default function Page(title, options = {}) {
+  if (typeof title === 'object') {
+    options = title;
+    title = undefined;
+  } else if (typeof title === 'boolean') {
+    options = { secondary: title };
+    title = undefined;
+  } else if (typeof title === 'string') {
+    options.secondary = true;
   }
 
-  const content = mustach.render(pageHTML, {
+  const {
+    secondary = false,
+    id = helpers.uuid(),
+  } = options;
+
+  const $page = tag('cordova-page', {
     id,
-    title,
-    secondary,
+    attr: {
+      secondary,
+    },
   });
-  const $page = tag.parse(content);
 
-  if (typeof options.onhide === 'function') {
-    $page.onhide = options.onhide;
+  const $body = tag('div', {
+    className: 'body',
+  });
+
+  if (secondary) {
+    $page.append(
+      tag('header', {
+        children: [
+          tag('span', {
+            className: 'icon-arrow_back',
+            onclick() {
+              $page.remove();
+            },
+          }),
+          tag('span', {
+            className: 'title',
+            textContent: title,
+          }),
+        ],
+      }),
+    );
+
+    $page.on('show', () => {
+      actionStack.push({
+        id,
+        action: $page.hide,
+      });
+    });
+
+    $page.on('hide', () => {
+      actionStack.remove(id);
+    });
   }
 
-  Object.defineProperties($page, {
-    id: {
-      value: id,
-    },
-    render: {
-      value() {
-        if (secondary) {
-          actionStack.push({
-            id,
-            action: this.hide,
-          });
-        }
-
-        $page.addEventListener('click', (e) => {
-          const $target = e.target;
-          if ($target instanceof HTMLElement) {
-            const action = $target.getAttribute('action');
-            if (action === 'back') {
-              this.hide();
-              actionStack.remove(id);
-            }
-          }
-        });
-
-        app.append(this);
-      },
-    },
-    hide: {
-      value() {
-        if (typeof $page.onhide === 'function') $page.onhide();
-        $page.classList.add('hide');
-        setTimeout($page.remove.bind($page), config.pageTransitionTimeout);
-      },
-    },
-    content: {
-      get() {
-        return this.get('.page-body').innerHTML;
-      },
-      set(HTMLtext) {
-        const $body = this.get('.page-body');
-        if (typeof HTMLtext === 'string') $body.innerHTML = HTMLtext;
-        if (HTMLtext instanceof HTMLElement) $body.append(HTMLtext);
-      },
-    },
-  });
-
+  $page.append($body);
   return $page;
 }
