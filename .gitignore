@@ -1,5 +1,5 @@
 node_modules
 .env
 platforms
-./www
-!./www/index.html
+www/**/*
+!www/index.html
