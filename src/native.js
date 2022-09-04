@@ -1,6 +1,6 @@
 export default {
   getWebviewInfo(onSuccess, onFail) {
-    cordova.exec(onSuccess, onFail, 'Native', 'get-webkit-info', []);
+    cordova.exec(onSuccess, onFail, 'Native', 'getWebkitInfo', []);
   },
   shareFile(fileUri, filename, onSuccess, onFail) {
     if (typeof filename === 'function') {
@@ -10,10 +10,10 @@ export default {
     }
 
     if (!filename) filename = '';
-    cordova.exec(onSuccess, onFail, 'Native', 'share-file', [fileUri, filename]);
+    cordova.exec(onSuccess, onFail, 'Native', 'shareFile', [fileUri, filename]);
   },
   getAppInfo(onSuccess, onFail) {
-    cordova.exec(onSuccess, onFail, 'Native', 'get-app-info', []);
+    cordova.exec(onSuccess, onFail, 'Native', 'getAppInfo', []);
   },
   addShortcut(shortcut, onSuccess, onFail) {
     const {
@@ -24,36 +24,30 @@ export default {
       data,
       action,
     } = shortcut;
-    cordova.exec(onSuccess, onFail, 'Native', 'add-shortcut', [id, label, description, icon, action, data]);
+    cordova.exec(onSuccess, onFail, 'Native', 'addShortcut', [id, label, description, icon, action, data]);
   },
   removeShortcut(id, onSuccess, onFail) {
-    cordova.exec(onSuccess, onFail, 'Native', 'remove-shortcut', [id]);
+    cordova.exec(onSuccess, onFail, 'Native', 'removeShortcut', [id]);
   },
   pinShortcut(id, onSuccess, onFail) {
-    cordova.exec(onSuccess, onFail, 'Native', 'pin-shortcut', [id]);
-  },
-  getAndroidVersion(onSuccess, onFail) {
-    cordova.exec(onSuccess, onFail, 'Native', 'get-android-version', []);
+    cordova.exec(onSuccess, onFail, 'Native', 'pinShortcut', [id]);
   },
   requestPermission(permission, onSuccess, onFail) {
-    cordova.exec(onSuccess, onFail, 'Native', 'request-permission', [permission]);
+    cordova.exec(onSuccess, onFail, 'Native', 'requestPermission', [permission]);
   },
   requestPermissions(permissions, onSuccess, onFail) {
-    cordova.exec(onSuccess, onFail, 'Native', 'request-permissions', [permissions]);
+    cordova.exec(onSuccess, onFail, 'Native', 'requestPermissions', [permissions]);
   },
   hasPermission(permission, onSuccess, onFail) {
-    cordova.exec(onSuccess, onFail, 'Native', 'has-permission', [permission]);
+    cordova.exec(onSuccess, onFail, 'Native', 'hasPermission', [permission]);
   },
   openInBrowser(src) {
-    cordova.exec(null, null, 'Native', 'open-in-browser', [src]);
-  },
-  launchApp(app, action, value, onSuccess, onFail) {
-    cordova.exec(onSuccess, onFail, 'Native', 'launch-app', [app, action, value]);
+    cordova.exec(null, null, 'Native', 'openInBrowser', [src]);
   },
   setUiTheme(color, type, onSuccess, onFail) {
-    cordova.exec(onSuccess, onFail, 'Native', 'set-ui-theme', [color, type]);
+    cordova.exec(onSuccess, onFail, 'Native', 'setUiTheme', [color, type]);
   },
   setIntentHandler(handler, onerror) {
-    cordova.exec(handler, onerror, 'Native', 'set-intent-handler', []);
+    cordova.exec(handler, onerror, 'Native', 'setIntentHandler', []);
   },
 };

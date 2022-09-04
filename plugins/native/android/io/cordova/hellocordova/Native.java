@@ -436,8 +436,8 @@ public class Native extends CordovaPlugin {
 
   public void setUiTheme(JSONArray args, CallbackContext callback) {
     cordova
-      .getThreadPool()
-      .execute(
+      .getActivity()
+      .runOnUiThread(
         new Runnable() {
           public void run() {
             String color = args.optString(0);
@@ -448,8 +448,8 @@ public class Native extends CordovaPlugin {
               themeColor = bgColor;
               themeType = type.toLowerCase();
               // Method and constants not available on all SDKs but we want to be able to compile this code with any SDK
-              window.clearFlags(0x04000000); // SDK 19: WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-              window.addFlags(0x80000000); // SDK 21: WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+              window.clearFlags(0x04000000); // SDK 19: WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS;
+              window.addFlags(0x80000000); // SDK 21: WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS;
               try {
                 // Using reflection makes sure any 5.0+ device will work without having to compile with SDK level 21
 
@@ -465,9 +465,11 @@ public class Native extends CordovaPlugin {
 
                 setStatusBarStyle(window);
                 setNavigationBarStyle(window);
-              } catch (IllegalArgumentException ignore) {} catch (
-                Exception ignore
-              ) {}
+              } catch (IllegalArgumentException ignore) {
+                // ignore
+              } catch (Exception ignore) {
+                // ignore
+              }
             }
           }
         }

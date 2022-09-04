@@ -1,7 +1,5 @@
 import './page.scss';
-import tag from 'html-tag-js';
 import helpers from 'utils/helpers';
-
 /**
  *
  * @param {String} title
@@ -24,39 +22,22 @@ export default function Page(title, options = {}) {
     id = helpers.uuid(),
   } = options;
 
-  const $page = tag('cordova-page', {
-    id,
-    attr: {
-      secondary,
-    },
-  });
-
-  const $body = tag('div', {
-    className: 'body',
-  });
+  /**
+   * @type {import('../cordovaPage/cordovaPage').default}
+   */
+  const $page = <cordova-page id={id} secondary={secondary}></cordova-page>;
+  const $body = <div className='body'></div>;
 
   if (secondary) {
-    $page.append(
-      tag('header', {
-        children: [
-          tag('span', {
-            className: 'icon-arrow_back',
-            onclick() {
-              $page.remove();
-            },
-          }),
-          tag('span', {
-            className: 'title',
-            textContent: title,
-          }),
-        ],
-      }),
-    );
+    $page.append(<header>
+      <span className='icon-arrow_back' onclick={() => $page.destroy()}></span>
+      <span className='title'>{title}</span>
+    </header>);
 
     $page.on('show', () => {
       actionStack.push({
         id,
-        action: $page.hide,
+        action: () => $page.destroy(),
       });
     });
 

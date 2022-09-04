@@ -15,6 +15,19 @@ module.exports = (env, options) => {
       use: ['raw-loader'],
     },
     {
+      test: /\.m?js$/,
+      exclude: /(node_modules)/,
+      use: [
+        'html-tag-js/jsx/tag-loader.js',
+        {
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-env'],
+          },
+        },
+      ],
+    },
+    {
       test: /\.module.(sa|sc|c)ss$/,
       use: [
         'raw-loader',
@@ -38,20 +51,6 @@ module.exports = (env, options) => {
       type: 'asset/resource',
     },
   ];
-
-  const babel = {
-    test: /\.m?js$/,
-    use: {
-      loader: 'babel-loader',
-      options: {
-        presets: ['@babel/preset-env'],
-      },
-    },
-  };
-
-  // if (!IS_DEVELOPMENT) {
-  rules.push(babel);
-  // }
 
   const mainConfig = {
     resolve: {
@@ -114,10 +113,10 @@ function clearOutputDir() {
   const WWW = path.resolve(__dirname, 'www');
   const files = fs.readdirSync(WWW);
   files.forEach((file) => {
-    if (file !== 'index.html') {
+    if (!['index.html', 'favicon.ico'].includes(file)) {
       const entry = path.join(WWW, file);
       if (fs.statSync(entry).isDirectory()) {
-        fs.rmdirSync(entry, { recursive: true });
+        fs.rmSync(entry, { recursive: true });
       } else {
         fs.unlinkSync(entry);
       }

@@ -1,11 +1,10 @@
-@import '../../mixins.scss';
+@import '../../styles/mixins.scss';
 
 #app[platform='android'] {
-  cordova-page{
+  cordova-page {
     @include statusbar;
   }
 }
-
 
 cordova-page {
   position: fixed !important;
@@ -34,7 +33,7 @@ cordova-page {
     height: 100%;
   }
 
-  &[secondary=true] {
+  &[secondary='true'] {
     opacity: 1;
     animation: page-transition 100ms ease 1;
 
@@ -48,7 +47,7 @@ cordova-page {
       animation: none;
     }
 
-    .body{
+    .body {
       height: calc(100% - 60px);
     }
   }

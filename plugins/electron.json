@@ -7,7 +7,7 @@
     "files": {}
   },
   "installed_plugins": {
-    "cordova-plugin-statusbar": {
+    "native": {
       "PACKAGE_NAME": "io.cordova.hellocordova"
     }
   },

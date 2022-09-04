@@ -1,3 +1,4 @@
+import './cordovaPage.scss';
 import PageHandler from './pageHandler';
 
 export default class CordovaPage extends HTMLElement {
@@ -8,13 +9,11 @@ export default class CordovaPage extends HTMLElement {
     connect: [],
     disconnect: [],
   };
-  #oldRemove;
   handler;
 
   constructor() {
     super();
 
-    this.#oldRemove = this.remove;
     this.remove = this.remove.bind(this);
     this.setTitle = this.setTitle.bind(this);
     this.on = this.on.bind(this);
@@ -30,6 +29,9 @@ export default class CordovaPage extends HTMLElement {
 
   connectedCallback() {
     this.classList.remove('hide');
+    setTimeout(() => {
+      this.classList.add('shown');
+    }, 300);
     this.#on.connect.forEach((cb) => cb.call(this));
     if (!this.#connected) {
       this.#connected = true;
@@ -69,10 +71,10 @@ export default class CordovaPage extends HTMLElement {
     $title.innerText = title;
   }
 
-  remove() {
+  destroy() {
     this.classList.add('hide');
     setTimeout(() => {
-      this.#oldRemove();
+      this.remove();
       this.handler.remove();
       this.#on.hide.forEach((cb) => cb.call(this));
       this.#connected = false;

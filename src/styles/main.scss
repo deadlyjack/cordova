@@ -1,0 +1,54 @@
+@import './mixins.scss';
+@import './theme.scss';
+@import './keyframes.scss';
+
+html,
+body {
+  viewport-fit: cover;
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  @include bgcolor;
+  color: white;
+  font-family: 'Roboto', sans-serif;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+#app {
+  &[platform='android'] {
+    @include statusbar;
+  }
+
+  position: fixed;
+  height: 100%;
+  width: 100vw;
+  top: 0;
+  left: 0;
+}
+
+[action],
+[data-action] {
+  *:not([action]) {
+    pointer-events: none;
+  }
+}
+
+[class^='icon-'] {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  &[action] {
+    transition: all 100ms ease;
+
+    &:active {
+      transform: scale(0.92);
+    }
+  }
+}
+
+.grid {
+  @include flex-row;
+  flex-wrap: wrap;
+}

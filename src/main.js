@@ -1,5 +1,5 @@
-import './main.scss';
-import './icons.scss';
+import './styles/main.scss';
+import './styles/icons.scss';
 
 import './components/customElements';
 import 'html-tag-js/dist/polyfill';

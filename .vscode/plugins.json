@@ -1,1 +1,1 @@
-{"plugins":["cordova-plugin-statusbar","cordova-plugin-geolocation","native"]}
+{"plugins":["native"]}

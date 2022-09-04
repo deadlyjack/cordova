@@ -3,9 +3,8 @@ const fs = require('fs');
 const path = require('path');
 
 const files = [
-  'hbs',
   'js',
-  'include.js',
+  'view.js',
   'scss',
 ];
 
@@ -34,15 +33,14 @@ const page = path.join(pagePath, name);
 const classname = name[0].toUpperCase() + name.slice(1);
 
 const content = {
-  hbs: '',
+  'view.js': `export default <div>${name}</div>;\n`,
   scss: `#${id}{\n  position: relative;\n}`,
-  js: `export default function ${classname}(...args) {\n  import(/* webpackChunkName: "${name}" */ './${name}.include')\n    .then((module) => {\n      const ${name} = module.default;\n      ${name}(...args);\n    });\n}\n`,
-  'include.js': `import './${name}.scss';\nimport Page from 'components/page/page';\nimport page from './${name}.hbs';\n\nexport default function ${classname}Include() {\n  const $page = Page('${classname}', {\n    id: '${id}',\n    secondary: true,\n  });\n  $page.content = page;\n  $page.render();\n}\n`,
+  js: `import './${name}.scss';\nimport Page from 'components/page/page';\nimport $view from './${name}.view';\n\nexport default function ${classname}() {\n  const PAGE_ID = '${id}';\n  const $page = Page('${classname}', {\n    id: PAGE_ID,\n    secondary: true,\n  });\n\n  // Setting page content\n  $page.content = $view;\n\n  // Rendering the page\n  app.append($page);\n}\n`,
 };
 
 if (action === 'remove') {
   if (fs.existsSync(page)) {
-    fs.rmdirSync(page, {
+    fs.rmSync(page, {
       recursive: true,
     });
   }
