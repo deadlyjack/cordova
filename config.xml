@@ -23,11 +23,12 @@
         <preference name="ShowTitle" value="true" />
         <preference name="BackgroundColor" value="0xFF313131" />
         <hook src="hooks/post-process.js" type="after_prepare" />
+
+        <config-file parent="./" target="AndroidManifest.xml">
+            <uses-sdk android:minSdkVersion="22" android:targetSdkVersion="31" />
+        </config-file>
     </platform>
 
-    <config-file parent="./" target="AndroidManifest.xml">
-        <uses-sdk android:minSdkVersion="22" android:targetSdkVersion="31" />
-    </config-file>
 
     <platform name="electron">
         <preference name="ElectronSettingsFilePath" value="res/electron/settings.json" />

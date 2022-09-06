@@ -6,13 +6,16 @@ import 'html-tag-js/dist/polyfill';
 import 'core-js/stable';
 
 import tag from 'html-tag-js';
-import ActionStack from './utils/actionStack';
-import Home from './pages/home/home';
+import dark from 'themes/dark';
+import theme from 'utils/theme';
+import Home from 'pages/home/home';
+import ActionStack from 'utils/actionStack';
 import native from './native';
 
 document.addEventListener('deviceready', main);
 
 function main() {
+  const { primaryColor, type } = theme(dark);
   const PLATFORM = cordova.platformId;
 
   /* Setting global variables */
@@ -32,7 +35,7 @@ function main() {
   tag.get('#app').setAttribute('platform', cordova.platformId);
 
   if (IS_ANDROID) {
-    native.setUiTheme('#292749', 'dark');
+    native.setUiTheme(primaryColor, type);
     /* Shows app exit confirmation when App is to exit. */
     document.addEventListener('backbutton', onBackButton);
   }

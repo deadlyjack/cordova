@@ -1,26 +1,32 @@
 const path = require('path');
 const fs = require('fs');
+const updateConfig = require('./updateConfig');
 
 const arg = process.argv[2];
 const babelrcpath = path.resolve(__dirname, '../.babelrc');
 
-let babelrc;
+main();
 
-try {
-  babelrc = fs.readFileSync(babelrcpath, 'utf8');
-  if (babelrc) babelrc = JSON.parse(babelrc);
-} catch (error) {
-  babelrc = null;
-}
+async function main() {
+  await updateConfig('production');
+  let babelrc;
 
-if (arg === 'd') {
-  if (babelrc) babelrc.compact = false;
-} else if (arg === 'p') {
-  if (babelrc) babelrc.compact = true;
-}
+  try {
+    babelrc = fs.readFileSync(babelrcpath, 'utf8');
+    if (babelrc) babelrc = JSON.parse(babelrc);
+  } catch (error) {
+    babelrc = null;
+  }
 
-if (babelrc) {
-  babelrc = JSON.stringify(babelrc, undefined, 2);
-  fs.writeFileSync(babelrcpath, babelrc, 'utf8');
+  if (arg === 'd') {
+    if (babelrc) babelrc.compact = false;
+  } else if (arg === 'p') {
+    if (babelrc) babelrc.compact = true;
+  }
+
+  if (babelrc) {
+    babelrc = JSON.stringify(babelrc, undefined, 2);
+    fs.writeFileSync(babelrcpath, babelrc, 'utf8');
+  }
+  process.exit(0);
 }
-process.exit(0);

@@ -1,15 +1,14 @@
 @import './mixins.scss';
-@import './theme.scss';
 @import './keyframes.scss';
 
 html,
 body {
-  viewport-fit: cover;
   height: 100%;
   width: 100%;
   margin: 0;
   @include bgcolor;
-  color: white;
+  color: #292749;
+  color: var(--primary-text-color);
   font-family: 'Roboto', sans-serif;
   user-select: none;
   -webkit-tap-highlight-color: transparent;
