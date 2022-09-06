@@ -1,4 +1,3 @@
-import './cordovaPage.scss';
 import PageHandler from './pageHandler';
 
 export default class CordovaPage extends HTMLElement {

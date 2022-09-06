@@ -25,7 +25,7 @@ export default function Page(title, options = {}) {
   /**
    * @type {import('../cordovaPage/cordovaPage').default}
    */
-  const $page = <cordova-page id={id} secondary={secondary}></cordova-page>;
+  const $page = <cordova-page id={id} attr-secondary={secondary}></cordova-page>;
   const $body = <div className='body'></div>;
 
   if (secondary) {

@@ -33,6 +33,7 @@ cordova-page {
     height: 100%;
   }
 
+  &:not(.shown),
   &[secondary='true'] {
     opacity: 1;
     animation: page-transition 100ms ease 1;

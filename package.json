@@ -48,7 +48,7 @@
     "dependencies": {
         "@ungap/custom-elements": "^1.1.0",
         "core-js": "^3.25.0",
-        "html-tag-js": "^1.1.11"
+        "html-tag-js": "^1.1.12"
     },
     "cordova": {
         "plugins": {
