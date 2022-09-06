@@ -6,6 +6,7 @@
     "main": "index.js",
     "scripts": {
         "test": "jest",
+        "setup": "node ./utils/setup",
         "clean": "bash utils/scripts/clean.sh",
         "build": "bash utils/scripts/build.sh",
         "start": "bash utils/scripts/start.sh",
