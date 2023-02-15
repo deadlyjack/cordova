@@ -26,7 +26,6 @@ export default function Page(title, options = {}) {
    * @type {import('../cordovaPage/cordovaPage').default}
    */
   const $page = <cordova-page id={id} attr-secondary={secondary}></cordova-page>;
-  const $body = <div className='body'></div>;
 
   if (secondary) {
     $page.append(<header>
@@ -46,6 +45,6 @@ export default function Page(title, options = {}) {
     });
   }
 
-  $page.append($body);
+  $page.append(<div className='body'></div>);
   return $page;
 }

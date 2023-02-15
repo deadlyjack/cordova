@@ -1,101 +1,54 @@
-import tag from 'html-tag-js';
-
 class Theme {
-  #primaryColor;
-  #primaryTextColor;
-  #secondaryColor;
-  #secondaryTextColor;
-  #type;
+  #scheme;
   #$style;
+  type = 'light';
 
-  constructor(colors = {}) {
-    const {
-      primaryColor = '#ffffff',
-      primaryTextColor = '#292749',
-      secondaryColor = '#3399ff',
-      secondaryTextColor = '#ffffff',
-      type = 'light',
-    } = colors;
+  constructor(scheme, type) {
+    this.#scheme = scheme;
+    this.type = type;
 
-    this.#primaryColor = primaryColor;
-    this.#primaryTextColor = primaryTextColor;
-    this.#secondaryColor = secondaryColor;
-    this.#secondaryTextColor = secondaryTextColor;
-    this.#type = type;
-
-    const $theme = tag.get('style#theme');
+    const $theme = document.head.get('style#theme');
     $theme?.remove();
     this.#$style = <style id='theme'></style>;
     this.updateTheme();
     document.head.appendChild(this.#$style);
   }
 
+  get scheme() {
+    return { ...this.#scheme };
+  }
+
+  set scheme(val) {
+    this.#scheme = val;
+    this.updateTheme();
+  }
+
   updateTheme() {
     this.#$style.textContent = this.#toStyle();
   }
 
-  get primaryColor() {
-    return this.#primaryColor;
-  }
-
-  set primaryColor(val) {
-    this.#primaryColor = val;
-    this.updateTheme();
-  }
-
-  get primaryTextColor() {
-    return this.#primaryTextColor;
-  }
-
-  set primaryTextColor(val) {
-    this.#primaryTextColor = val;
-    this.updateTheme();
-  }
-
-  get secondaryColor() {
-    return this.#secondaryColor;
-  }
-
-  set secondaryColor(val) {
-    this.#secondaryColor = val;
-    this.updateTheme();
-  }
-
-  get secondaryTextColor() {
-    return this.#secondaryTextColor;
-  }
-
-  set secondaryTextColor(val) {
-    this.#secondaryTextColor = val;
-    this.updateTheme();
-  }
-
-  get type() {
-    return this.#type;
-  }
-
-  set type(val) {
-    this.#type = val;
+  get(color) {
+    return this.#scheme[color];
   }
 
   #toStyle() {
-    return `:root{
-  --primary-color: ${this.#primaryColor};
-  --primary-text-color: ${this.#primaryTextColor};
-  --secondary-color: ${this.#secondaryColor};
-  --secondary-text-color: ${this.#secondaryTextColor};
-}`;
+    let theme = '';
+    Object.keys(this.#scheme).forEach((color) => {
+      const cssVar = color.replace(/[A-Z]/g, ($) => `-${$.toLowerCase()}`);
+      theme += `--${cssVar}: ${this.#scheme[color]};`;
+    });
+    return `:root{${theme}}`;
   }
 }
 
 /** @type {Theme} */
 let theme;
 
-export default (colors) => {
+export default (colors, type) => {
   if (theme) {
     return theme;
   }
 
-  theme = new Theme(colors);
+  theme = new Theme(colors, type);
   return theme;
 };

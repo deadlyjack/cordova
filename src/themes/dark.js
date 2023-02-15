@@ -3,5 +3,4 @@ export default {
   primaryTextColor: '#ffffff',
   secondaryColor: '#3399ff',
   secondaryTextColor: '#ffffff',
-  type: 'dark',
 };

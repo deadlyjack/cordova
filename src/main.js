@@ -15,7 +15,7 @@ import native from './native';
 document.addEventListener('deviceready', main);
 
 function main() {
-  const { primaryColor, type } = theme(dark);
+  const { scheme: { primaryColor }, type } = theme(dark, 'dark');
   const PLATFORM = cordova.platformId;
 
   /* Setting global variables */

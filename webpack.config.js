@@ -60,6 +60,7 @@ module.exports = (env, options) => {
         plugins: path.resolve(__dirname, 'src/plugins'),
         components: path.resolve(__dirname, 'src/components'),
         utils: path.resolve(__dirname, 'src/utils'),
+        themes: path.resolve(__dirname, 'src/themes'),
       },
     },
     stats: 'minimal',
