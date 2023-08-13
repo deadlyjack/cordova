@@ -6,28 +6,18 @@ const buildFilePath = path.resolve(__dirname, '../build.json');
 const copyToPath = path.resolve(__dirname, '../platforms/android/build.json');
 const resPath = path.resolve(__dirname, '../platforms/android/app/src/main/res/');
 const localResPath = path.resolve(__dirname, '../res/android/');
-// const themeXML = path.resolve(__dirname, localResPath, 'values', 'themes.xml');
-// const manifestXML = path.resolve(__dirname, resPath, '..', 'AndroidManifest.xml');
-// const manifestXMLContent = fs.readFileSync(manifestXML, 'utf8');
-// const themeXMLContent = fs.readFileSync(themeXML, 'utf8');
-// const themeRegex = /<style\s+name\s*=\s*"(.+)"\s+.*>/;
-// const theme = themeRegex.exec(themeXMLContent)[1];
-// const newManifestXMLContent = manifestXMLContent.replace(
-//   /android:theme\s*=\s*"(.+)"\s+/,
-//   `android:theme="${theme}" `,
-// );
 
 if (
   !fs.existsSync(copyToPath)
   && fs.existsSync(buildFilePath)
 ) fs.copyFileSync(buildFilePath, copyToPath);
 
-deleteDirRecursively(resPath, ['values/strings.xml', 'values/colors.xml', 'xml']);
+deleteDirRecursively(resPath, [
+  path.join('values', 'strings.xml'),
+  path.join('values', 'colors.xml'),
+  'xml',
+]);
 copyDirRecursively(localResPath, resPath);
-
-// log in cyan
-// console.log('\x1b[36m%s\x1b[0m', 'using theme: ', theme);
-// fs.writeFileSync(manifestXML, newManifestXMLContent);
 
 /**
  * Copy directory recursively
@@ -90,15 +80,15 @@ function deleteDirRecursively(dir, except = [], currPath = '') {
     let deleteDir = true;
     fs.readdirSync(dir).forEach((childItemName) => {
       const relativePath = path.join(currPath, childItemName);
-      const setDeleteDir = deleteDir;
-
-      if (setDeleteDir) deleteDir = false;
-      if (childItemName.startsWith('.')) return;
-      if (except.includes(childItemName) || except.includes(relativePath)) {
+      if (
+        childItemName.startsWith('.')
+        || except.includes(childItemName)
+        || except.includes(relativePath)
+      ) {
         console.log('\x1b[33m%s\x1b[0m', `skipped: ${relativePath}`); // yellow
+        deleteDir = false;
         return;
       }
-      if (setDeleteDir) deleteDir = true;
 
       deleteDirRecursively(
         path.join(dir, childItemName),
@@ -106,11 +96,13 @@ function deleteDirRecursively(dir, except = [], currPath = '') {
         childItemName,
       );
     });
+
     if (deleteDir) {
       console.log('\x1b[31m%s\x1b[0m', `deleted: ${currPath || path.basename(dir)}`); // red
       fs.rmSync(dir, { recursive: true });
     }
   } else {
+    console.log('\x1b[31m%s\x1b[0m', `deleted: ${currPath || path.basename(dir)}`); // red
     fs.rmSync(dir);
   }
 }
