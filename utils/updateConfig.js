@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 const fs = require('fs');
 const path = require('path');
 const { networkInterfaces } = require('os');
@@ -7,10 +8,11 @@ module.exports = async (mode = 'dev') => {
   const configXml = path.resolve('config.xml');
   const config = fs.readFileSync(configXml, 'utf-8');
   const configJson = await parseStringPromise(config);
-  const { WiFi } = getIp();
+  const { WiFi, en1 } = getIp();
   const ip = WiFi ? WiFi[0] : undefined;
   const port = '5500';
-  const src = `https://${ip || '10.0.0'}:${port}`;
+  const src = `https://${ip || en1 || '10.0.0'}:${port}`;
+
   configJson.widget.platform.forEach((platform) => {
     if (mode === 'dev') {
       platform.content = [{ $: { src } }];

@@ -2,8 +2,8 @@
 /* eslint-disable no-console */
 const fs = require('fs');
 const path = require('path');
-const liveServer = require('live-server');
 const { exec } = require('child_process');
+const liveServer = require('live-server');
 const updateConfig = require('./updateConfig');
 
 const serverCrt = path.resolve(__dirname, 'server.crt');
