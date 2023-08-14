@@ -54,14 +54,7 @@ module.exports = (env, options) => {
 
   const mainConfig = {
     resolve: {
-      alias: {
-        res: path.resolve(__dirname, 'src/res'),
-        pages: path.resolve(__dirname, 'src/pages'),
-        plugins: path.resolve(__dirname, 'src/plugins'),
-        components: path.resolve(__dirname, 'src/components'),
-        utils: path.resolve(__dirname, 'src/utils'),
-        themes: path.resolve(__dirname, 'src/themes'),
-      },
+      modules: ["node_modules", "src"],
     },
     stats: 'minimal',
     watchOptions: {
