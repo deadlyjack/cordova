@@ -70,7 +70,6 @@ module.exports = (env, options) => {
     mode,
     entry: {
       main: './src/main.js',
-      // sw: './src/sw.js',
     },
     output: {
       path: WWW,

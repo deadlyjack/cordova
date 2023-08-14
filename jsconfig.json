@@ -1,25 +1,22 @@
 {
+  "exclude": [
+    "**/node_modules",
+    "**/platforms",
+    "**/plugins",
+    "**/www",
+  ],
   "compilerOptions": {
-    "baseUrl": ".",
+    "baseUrl": "./src",
     "paths": {
-      "components/*": [
-        "./src/components/*"
-      ],
-      "pages/*": [
-        "./src/pages/*"
-      ],
-      "res/*": [
-        "./src/res/*"
-      ],
-      "styles/*": [
-        "./src/styles/*"
-      ],
-      "utils/*": [
-        "./src/utils/*"
-      ],
-      "themes/*": [
-        "./src/themes/*"
+      "*": [
+        "*"
       ],
     }
+  },
+  "include": [
+    "src/**/*"
+  ],
+  "typeAcquisition": {
+    "enable": true
   }
 }
