@@ -1,5 +1,5 @@
-import './styles/main.scss';
-import './styles/icons.scss';
+import 'styles/main.scss';
+import 'styles/icons.scss';
 
 import './components/customElements';
 import 'html-tag-js/dist/polyfill';
@@ -7,10 +7,10 @@ import 'core-js/stable';
 
 import tag from 'html-tag-js';
 import dark from 'themes/dark';
-import theme from 'utils/theme';
-import Home from 'pages/home/home';
-import ActionStack from 'utils/actionStack';
-import native from './native';
+import theme from 'lib/theme';
+import Home from 'pages/home';
+import native from 'lib/native';
+import actionStack from 'lib/actionStack';
 
 document.addEventListener('deviceready', main);
 
@@ -20,7 +20,6 @@ function main() {
 
   /* Setting global variables */
   Object.defineProperties(window, {
-    actionStack: value(ActionStack()),
     ROOT: value(
       window.location.href
         .replace(/(\/index\.html)$/, '')
