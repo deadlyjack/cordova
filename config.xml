@@ -23,13 +23,16 @@
         <config-file parent="./" target="AndroidManifest.xml">
             <uses-sdk android:minSdkVersion="22" android:targetSdkVersion="31"/>
         </config-file>
+        <content src="https://192.168.39.167:5500"/>
     </platform>
     <platform name="electron">
         <preference name="ElectronSettingsFilePath" value="res/electron/settings.json"/>
         <hook src="hooks/electron-hook.js" type="after_perpare"/>
+        <content src="https://192.168.39.167:5500"/>
     </platform>
     <platform name="ios">
         <allow-intent href="itms:*"/>
         <allow-intent href="itms-apps:*"/>
+        <content src="https://192.168.39.167:5500"/>
     </platform>
 </widget>

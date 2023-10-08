@@ -9,9 +9,9 @@ module.exports = async (mode = 'dev') => {
   const config = fs.readFileSync(configXml, 'utf-8');
   const configJson = await parseStringPromise(config);
   const { WiFi, en1 } = getIp();
-  const ip = WiFi ? WiFi[0] : undefined;
+  const ip = WiFi?.length ? WiFi[0] : en1;
   const port = '5500';
-  const src = `https://${ip || en1 || '10.0.0'}:${port}`;
+  const src = `https://${ip || '10.0.0'}:${port}`;
 
   configJson.widget.platform.forEach((platform) => {
     if (mode === 'dev') {

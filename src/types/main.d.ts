@@ -1,7 +1,6 @@
-interface Action {
-  id: String;
-  action(): void;
-}
+/// <reference path="../../.vscode/typings/cordova/cordova.d.ts"/>
+/// <reference path="../../.vscode/typings/cordova/plugins/StatusBar.d.ts"/>
+
 interface PageOption {
   /**
    * ID of the page. This id will will also be the elm id i.e.
