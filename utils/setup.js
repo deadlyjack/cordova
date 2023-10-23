@@ -16,7 +16,7 @@ exec('npm install', (error) => {
     }
 
     console.log('Android added.');
-    console.log('Intalling native plugin.');
+    console.log('Installing native plugin.');
     exec('cordova plugin add ./native', (pluginError) => {
       if (pluginError) {
         console.error(pluginError);

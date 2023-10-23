@@ -1,5 +1,3 @@
-import tag from 'html-tag-js';
-
 export default class PageHandler {
   $el;
   $replacement;
@@ -43,12 +41,12 @@ export default class PageHandler {
 
   onhide() {
     this.$el.off('hide', this.onhide);
-    handlePagesForSmoothExprienceBack();
+    handlePagesForSmoothExperienceBack();
   }
 
   onshow() {
     this.$el.off('show', this.onshow);
-    handlePagesForSmoothExprience();
+    handlePagesForSmoothExperience();
   }
 
   remove() {
@@ -59,14 +57,14 @@ export default class PageHandler {
 /**
  * Remove invisible pages from DOM and add them to the stack
  */
-function handlePagesForSmoothExprience() {
+function handlePagesForSmoothExperience() {
   const $pages = [...tag.getAll('cordova-page')];
   $pages.slice(0, -1).forEach(($page) => {
     $page.handler.replaceEl();
   });
 }
 
-function handlePagesForSmoothExprienceBack() {
+function handlePagesForSmoothExperienceBack() {
   [
     ...tag.getAll('.page-replacement'),
   ].pop()?.handler.restoreEl();
