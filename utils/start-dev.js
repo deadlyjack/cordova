@@ -16,6 +16,7 @@ async function main() {
   let appRan = false;
   liveServer.start({
     open: false,
+    host,
     port,
     root: path.resolve(__dirname, '../www'),
     ignore: 'node_modules,platforms,plugins',
