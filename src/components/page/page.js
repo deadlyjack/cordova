@@ -1,5 +1,6 @@
+import actionStack from 'lib/actionStack';
 import './page.scss';
-import helpers from 'utils/helpers';
+import helpers from 'lib/helpers';
 /**
  *
  * @param {String} title

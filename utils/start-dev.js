@@ -13,12 +13,12 @@ main();
 
 async function main() {
   const { ip: host, port } = await updateConfig('dev');
-  process.cwd = () => __dirname;
+  let appRan = false;
   liveServer.start({
     open: false,
-    port,
     host,
-    root: '../www',
+    port,
+    root: path.resolve(__dirname, '../www'),
     ignore: 'node_modules,platforms,plugins',
     file: 'index.html',
     https: {
@@ -52,21 +52,20 @@ async function main() {
     }],
   });
 
-  console.log('starting android...');
-  exec('cordova run android', (error) => {
-    if (error) {
-      console.error(error);
-      process.exit(1);
-    }
-    console.log('Running webpack');
-    const webpack = exec('npx webpack --progress --mode=development --watch', (webpackError) => {
-      if (webpackError) {
-        console.error(webpackError);
-        process.exit(1);
-      }
-    });
-    webpack.stdout.on('data', console.log);
+  const webpack = exec('npx webpack --progress --mode=development --watch', onError);
+  webpack.stdout.on('data', (chunk) => {
+    console.log(chunk);
+    if (appRan) return;
+    appRan = true;
+    exec('cordova run android', onError);
   });
+
+}
+
+function onError(error) {
+  if (!error) return;
+  console.error(error);
+  process.exit(1);
 }
 
 function sendFile(res, filePath) {
