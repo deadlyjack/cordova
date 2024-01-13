@@ -42,6 +42,12 @@ async function main() {
         return;
       }
 
+      if (url.startsWith('/plugins/')) {
+        const file = path.resolve(__dirname, www, url.substr(1));
+        sendFile(res, file);
+        return;
+      }
+
       next();
     }],
   });
