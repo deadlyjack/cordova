@@ -1,4 +1,7 @@
 {
+    "plugins": [
+        "jsx"
+    ],
     "env": {
         "browser": true,
         "node": true,
@@ -15,6 +18,8 @@
         }
     },
     "rules": {
+        "jsx/mark-used-vars": "error",
+        "jsx/no-undef": "error",
         "no-use-before-define": "off",
         "no-param-reassign": "off",
         "no-multi-assign": "off",
@@ -39,8 +44,5 @@
                 ]
             }
         }
-    },
-    "plugins": [
-        "react/jsx-uses-react"
-    ]
+    }
 }

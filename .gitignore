@@ -4,3 +4,4 @@ platforms
 plugins
 www/**/*
 !www/index.html
+**/*/.DS_Store
