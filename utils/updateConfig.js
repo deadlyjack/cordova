@@ -35,15 +35,14 @@ function getIp() {
   const nets = networkInterfaces();
   let ip = '';
 
-  Object.keys(nets).some((name) => {
-    return nets[name].find((net) => {
-      const familyV4Value = typeof net.family === 'string' ? 'IPv4' : 4;
-      if (net.family === familyV4Value && !net.internal) {
-        ip = net.address;
-        return ip;
-      }
-    });
-  });
+  Object.keys(nets).some((name) => nets[name].find((net) => {
+    const familyV4Value = typeof net.family === 'string' ? 'IPv4' : 4;
+    if (net.family === familyV4Value && !net.internal) {
+      ip = net.address;
+      return ip;
+    }
+    return false;
+  }));
 
   return ip;
 }

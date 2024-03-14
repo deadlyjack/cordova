@@ -1,6 +1,6 @@
 import './home.scss';
-import $view from './home.view';
 import Page from 'components/page/page';
+import $view from './home.view';
 
 export default function Home() {
   let count = 0;
